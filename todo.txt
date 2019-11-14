@@ -8,3 +8,5 @@ APIs we plan to use
     *   IPStack - https://ipstack.com/
     *   Dark Sky - https://docs.google.com/document/d/11P20BGIGfKRNu8uG3Yxn1DkM_quHjr5254bGpjHaX14/edit
     *   Meme Generator - https://docs.google.com/document/d/1Dzcwh8tSxYQiXnEhezSDOa-iyqOWOfg-3iW45IiSvDo/edit
+    *   GIPHY - https://docs.google.com/document/d/1rzLGH6AQ-SzRxvbYvchO6JYba4zc5FLhMxRhKfE-7O4/edit
+    *   Wikipedia - https://docs.google.com/document/d/1KNf_h_Rysiftc88uZNZO4LMpAyQprUTSj-eg5CMz9a8/edit
