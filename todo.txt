@@ -1,0 +1,10 @@
+nounGenerator -- media web app
+PM: Winston Peng
+Members: Derek Leung, Ahmed Sultan
+
+APIs we plan to use
+    *   Buzzfeed - https://docs.google.com/document/d/1dr0IqFcdT63QDH7emLKpJS9tFKbvVahB4TwMZ9EDbMA/edit
+    *   New York Times - https://docs.google.com/document/d/1SkRuv1xWtdYASjP-t0Me-kBSfD0rPpmyvHQf8xAdZR8/edit?usp=sharing   
+    *   IPStack - https://ipstack.com/
+    *   Dark Sky - https://docs.google.com/document/d/11P20BGIGfKRNu8uG3Yxn1DkM_quHjr5254bGpjHaX14/edit
+    *   Meme Generator - https://docs.google.com/document/d/1Dzcwh8tSxYQiXnEhezSDOa-iyqOWOfg-3iW45IiSvDo/edit
