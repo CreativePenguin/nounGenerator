@@ -2,3 +2,13 @@ ahmedS -- 2019-11-15 09:10 AM
 Added devlog
 Created basic Flask app
 Created templates directory, and 'index.html' template
+
+winstonP -- 2019-11-17 ??:?? PM
+Added design document
+
+ahmedS -- 2019-11-18 07:53 AM
+Edited design document (current: design_V2.pdf)
+    Changes made:
+        Fixed a few typos
+        Made some things clearer
+        Removed "site pages section"
