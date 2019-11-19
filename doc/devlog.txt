@@ -12,3 +12,12 @@ Edited design document (current: design_V2.pdf)
         Fixed a few typos
         Made some things clearer
         Removed "site pages section"
+
+ahmedS -- 2019-11-19 02:46 PM 
+Edited design document (current: design_V3.pdf)
+    Changes made:
+        Added mention of front end framework of choice
+        Cleared up some of the intended utilizations for our APIs
+        General clean-up
+    Goal for next edit:
+        Adding comprehensive component map
