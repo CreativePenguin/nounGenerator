@@ -21,3 +21,9 @@ Edited design document (current: design_V3.pdf)
         General clean-up
     Goal for next edit:
         Adding comprehensive component map
+
+ahmedS -- 2019-11-20 12:19 PM
+Committed and pushed stuff from last night
+Created routes for login, registration
+Created pages for login, registration using Bootstrap
+    Next step: functionality for login/registration
