@@ -1,3 +1,7 @@
+Team nounGenerator
+P01: ArRESTed Development
+2019-1?-??
+
 ahmedS -- 2019-11-15 09:10 AM
 Added devlog
 Created basic Flask app
@@ -13,7 +17,7 @@ Edited design document (current: design_V2.pdf)
         Made some things clearer
         Removed "site pages section"
 
-ahmedS -- 2019-11-19 02:46 PM 
+ahmedS -- 2019-11-19 02:46 PM
 Edited design document (current: design_V3.pdf)
     Changes made:
         Added mention of front end framework of choice
@@ -22,8 +26,8 @@ Edited design document (current: design_V3.pdf)
     Goal for next edit:
         Adding comprehensive component map
 
-ahmedS -- 2019-11-20 12:19 PM
-Committed and pushed stuff from last night
-Created routes for login, registration
-Created pages for login, registration using Bootstrap
-    Next step: functionality for login/registration
+leungD -- 2019-11-19 02:48 PM
+Added base template and added bootstrap files
+
+leungD -- 2019-11-20 01:51 PM
+Added requirements.txt
