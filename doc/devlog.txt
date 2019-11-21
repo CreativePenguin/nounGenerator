@@ -3,7 +3,7 @@ Added devlog
 Created basic Flask app
 Created templates directory, and 'index.html' template
 
-winstonP -- 2019-11-17 ??:?? PM
+winstonP -- 2019-11-17 11:30 PM
 Added design document
 
 ahmedS -- 2019-11-18 07:53 AM
@@ -27,3 +27,7 @@ Committed and pushed stuff from last night
 Created routes for login, registration
 Created pages for login, registration using Bootstrap
     Next step: functionality for login/registration
+
+pengW -- 2019-11-21 12:53 PM
+Committed and pushed work I did yesterday in class
+Update README to include proper instructions
