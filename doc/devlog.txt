@@ -2,22 +2,22 @@ Team nounGenerator
 P01: ArRESTed Development
 2019-1?-??
 
-ahmedS -- 2019-11-15 09:10 AM
+sultanA -- 2019-11-15 09:10 AM
 Added devlog
 Created basic Flask app
 Created templates directory, and 'index.html' template
 
-winstonP -- 2019-11-17 11:30 PM
+pengW -- 2019-11-17 11:30 PM
 Added design document
 
-ahmedS -- 2019-11-18 07:53 AM
+sultanA -- 2019-11-18 07:53 AM
 Edited design document (current: design_V2.pdf)
     Changes made:
         Fixed a few typos
         Made some things clearer
         Removed "site pages section"
 
-ahmedS -- 2019-11-19 02:46 PM
+sultanA -- 2019-11-19 02:46 PM
 Edited design document (current: design_V3.pdf)
     Changes made:
         Added mention of front end framework of choice
@@ -29,7 +29,7 @@ Edited design document (current: design_V3.pdf)
 leungD -- 2019-11-19 02:48 PM
 Added base template and added bootstrap files
 
-ahmedS -- 2019-11-20 12:19 PM
+sultanA -- 2019-11-20 12:19 PM
 Committed and pushed stuff from last night
 Created routes for login, registration
 Created pages for login, registration using Bootstrap
@@ -45,3 +45,6 @@ Update README to include proper instructions
 
 leungD -- 2019-11-21 02:47 PM
 Worked more on databases and added more routes
+
+pengW -- 2019-11-21 3:09 PM
+Make READMe up to date, and reformat Ahmed's devlogs up to code

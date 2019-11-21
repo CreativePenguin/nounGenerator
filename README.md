@@ -1,5 +1,10 @@
-# nounGenerator
-
+# World Star by nounGenerator  
+It's a trivia game. Get the high score to own a country.
+You will need to know at least basic info about the country that you're
+conquering.  
+Real life results will vary. Visiting the actual country that you own,
+and verifying whether or not it belongs to you is not recommended.
+Please do not refer to the people in that country as your subjects.
 ## Install  
 Pip is required https://pip.pypa.io/en/stable/installing/  
 
@@ -19,5 +24,20 @@ python app.py
 ```
 Then go to the link http://127.0.0.1:5000/ (listed in terminal)
 
-## Contributions
+## Contributing
 Fork repo, edit master branch and request a pull
+### Maintainters  
+Flask App Creator -- Buford/Derek  
+Person will create a Python Flask application that will have each of the routes we need (mentioned above)  
+Person will make sure that the pages that require you to be logged in cannot be accessed by just typing the extension into the URL if you have not logged in
+Person will make sure to flash messages when appropriate to do so (i.e. flashing a login error when submitting a wrong username or password on the login page)  
+
+HTML/Jinja Template Creator -- Ahmed  
+Person will create the HTML templates for each of the routes  
+Person will use forms when appropriate (i.e. login page => username and password inputs, submit button)  
+Person will use Jinja to take in and display variables when necessary (i.e. for the blog post template, use Jinja to display a blog post pulled from the database table)
+Person will pay attention to aesthetic details  
+
+Database Creator -- Winston  
+Person will write a Python application to create appropriate databases and tables, making sure to only add them if they don’t already exist  
+Person will facilitate adding to, editing contents in, and potentially removing from tables
