@@ -20,4 +20,4 @@ python app.py
 Then go to the link http://127.0.0.1:5000/ (listed in terminal)
 
 ## Contributions
-Fork it master and request a pull
+Fork repo, edit master branch and request a pull
