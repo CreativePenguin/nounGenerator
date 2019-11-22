@@ -59,4 +59,4 @@ leungD -- 2019-11-22 2:46 PM
 Added html functionality and added more app routes
 
 sultanA -- 2019-11-22 2:48 PM
-Worked a little bit
+Worked a little bit on login and registration HTML
