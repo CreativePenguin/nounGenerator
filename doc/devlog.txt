@@ -51,3 +51,6 @@ Make README up to date, and reformat Ahmed's devlogs up to code
 
 pengW -- 2019-11-21 1:54 PM
 Add team flag to design doc
+
+sultanA -- 2019-11-22 2:11 PM
+Deleted extraneous Boostrap material in the directory
