@@ -47,4 +47,7 @@ leungD -- 2019-11-21 02:47 PM
 Worked more on databases and added more routes
 
 pengW -- 2019-11-21 3:09 PM
-Make READMe up to date, and reformat Ahmed's devlogs up to code
+Make README up to date, and reformat Ahmed's devlogs up to code
+
+pengW -- 2019-11-21 1:54 PM
+Add team flag to design doc
