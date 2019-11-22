@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block body %}
-<br> <br>
+<br>
 <h2 class="text-dark" style="text-align: center; padding: 1em;">Register</h2>
 <div class="login-form" style="text-align: center; display: block;">
      <form style="width: 50%; display: inline-block;">
@@ -19,6 +19,8 @@
                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
           </div>
           <button type="submit" class="btn btn-danger">Submit</button>
+          <button type="submit" class="btn btn-primary" formaction="/login">Login</button>
+
      </form>
 </div>
 {% endblock %}
