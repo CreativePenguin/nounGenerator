@@ -14,7 +14,7 @@ import sqlite3
 
 # -----------------------------------------------------------------
 # DATABASE SETUP
-DB_FILE = "Info.db"
+DB_FILE = "info.db"
 db = sqlite3.connect(DB_FILE)
 c = db.cursor()
 c.execute(''' SELECT count(name) FROM sqlite_master WHERE type='table' AND name='userdata' ''')
