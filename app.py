@@ -7,11 +7,13 @@ from flask import Flask
 from flask import render_template
 from flask import redirect
 from flask import url_for
+from os import urandom
 import urllib
 import json
+import sqlite3
 
-#-----------------------------------------------------------------
-#DATABASE SETUP
+# -----------------------------------------------------------------
+# DATABASE SETUP
 DB_FILE = "Info.db"
 db = sqlite3.connect(DB_FILE)
 c = db.cursor()
@@ -25,11 +27,11 @@ c.execute(''' SELECT count(name) FROM sqlite_master WHERE type='table' AND name=
 if c.fetchone()[0] < 1:
     c.execute("CREATE TABLE scores(username TEXT, score1 INTEGER, score2 INTEGER, score3 INTEGER, score4 INTEGER, score5 INTEGER);")
 
-#-----------------------------------------------------------------
-#FLASK STUFF
+# -----------------------------------------------------------------
+# FLASK STUFF
 
 app = Flask(__name__)
-app.secret_key = os.urandom(32)
+app.secret_key = urandom(32)
 
 @app.route("/", methods=['GET', 'POST'])
 def checkCreds():
