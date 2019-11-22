@@ -41,9 +41,18 @@ def checkCreds():
 def login():
     return render_template("login.html")
 
+@app.route("/loginHelp")
+def loginHelp():
+    return None
+
+
 @app.route("/register")
-def reigster():
+def register():
     return render_template("register.html")
+
+@app.route("/registerHelp")
+def registerHelp():
+    return None
 
 @app.route("/home")
 def home():

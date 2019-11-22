@@ -54,3 +54,6 @@ Add team flag to design doc
 
 sultanA -- 2019-11-22 2:11 PM
 Deleted extraneous Bootstrap material in the directory
+
+leungD -- 2019-11-22 2:46 PM
+Added html functionality and added more app routes
