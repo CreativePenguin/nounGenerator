@@ -37,12 +37,14 @@ if c.fetchone()[0] < 1:
 # -----------------------------------------------------------------
 # FLASK STUFF
 
+# ROOT ------------------------------
 @app.route("/", methods=['GET', 'POST'])
 def root():
     if 'user' in session:
         return redirect("/home")
     return redirect("/login")
 
+# LOGIN ------------------------------
 @app.route("/login")
 def login():
     # if user is already logged in, redirect back to discover to be handled
@@ -75,7 +77,7 @@ def login():
     # rendering template
     return render_template("login.html")
 
-
+# REGISTER ------------------------------
 @app.route("/register")
 def register():
     # if user is already logged in, redirect back to root to be handled
@@ -114,21 +116,24 @@ def register():
     
     # rendering template
     return render_template("register.html")
-        
 
-
-
+# HOME ------------------------------
 @app.route("/home")
 def home():
-    return "Hello!"
+    if 'user' not in session:
+        return redirect(url_for("root"))
+    
+    return render_template("home.html")
 
-@app.route("/registerHelp")
-def registerHelp():
-    return None
-
-@app.route("/leaderboards")
-def leaderboards():
-    return None
+# LOGOUT ------------------------------
+@app.route("/logout")
+def logout():
+    if 'user' in session:
+        session.pop("user")
+        return redirect(url_for("login"))
+        print("logged out")
+    
+    return render_template("home.html")
 
 if __name__ == "__main__":
     app.debug = True

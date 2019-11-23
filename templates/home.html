@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block body %}
+<h2 class="text-dark" style="text-align: center; padding: 1em;">Home</h2>
+{% endblock %}
+
+{% block logout %}
+<div style="text-align: center;">
+     <br>
+     <button type="submit" class="btn btn-danger" formaction="/logout">(Click here to logout.)</button>
+</div>
+{% endblock %}
