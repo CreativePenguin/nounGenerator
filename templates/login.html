@@ -20,4 +20,9 @@
                <button type="submit" class="btn btn-danger" formaction="/register">Register</button>
           </form>
      </div>
+
+     {% for message in get_flashed_messages() %}
+     <br><br>
+     <center><b>{{ message }}</b></center>
+     {% endfor %}
 {% endblock %}

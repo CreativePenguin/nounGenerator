@@ -22,6 +22,7 @@ app.secret_key = urandom(32)
 # DATABASE SETUP
 DB_FILE = "info.db"
 db = sqlite3.connect(DB_FILE)
+
 c = db.cursor()
 c.execute(''' SELECT count(name) FROM sqlite_master WHERE type='table' AND name='userdata' ''')
 if c.fetchone()[0] < 1:
@@ -44,7 +45,7 @@ def root():
 
 @app.route("/login")
 def login():
-    # if user is already logged in, redirect back to discover
+    # if user is already logged in, redirect back to discover to be handled
     if 'user' in session:
         return redirect(url_for('root'))
     
@@ -65,20 +66,61 @@ def login():
                             session['user'] = iUser
                             return redirect(url_for("root"))
                         else:
-                            flash('Wrong password. Please try again.')
+                            flash('Wrong password! Please try again.')
                     else:
-                        flash('Unrecognized username. Please try again.')
+                        flash('Unrecognized username! Please try again.')
+        else:
+            flash('Not all fields filled! Please try again.')
     
+    # rendering template
     return render_template("login.html")
+
+
+@app.route("/register")
+def register():
+    # if user is already logged in, redirect back to root to be handled
+    if 'user' in session:
+        return redirect(url_for('root'))
+
+    # checking to see if something was input
+    if (request.args):
+        # checking to see if all args present
+        if (bool(request.args["username"]) and bool(request.args["password"]) and bool(request.args["confpassword"])):
+            iUser = request.args["username"]
+            iPass = request.args["password"]
+            iConf = request.args["confpassword"]
+
+            # confirming passwords match
+            if (iPass == iConf):
+                # next, checking to see if user in user list
+                with sqlite3.connect(DB_FILE) as connection:
+                    cur = connection.cursor()
+                    qry = 'SELECT username, password FROM userdata;'
+                    foo = cur.execute(qry)
+                    userList = foo.fetchall()
+                    for row in userList:
+                        if (iUser == row[0]):
+                            flash('Username already taken! Please try again.')
+                            return redirect(url_for("register"))                            
+                    qry = "INSERT INTO userdata VALUES('{}', '{}');".format(iUser, iPass)
+                    cur.execute(qry)
+                    connection.commit()
+                    flash('Successfully registered! Please log in.')
+                    return redirect("/login")
+            else:
+                flash('Passwords do not match! Please try again.')
+        else:
+            flash('Not all fields filled! Please try again.')
+    
+    # rendering template
+    return render_template("register.html")
+        
+
 
 
 @app.route("/home")
 def home():
     return "Hello!"
-
-@app.route("/register")
-def register():
-    return render_template("register.html")
 
 @app.route("/registerHelp")
 def registerHelp():
