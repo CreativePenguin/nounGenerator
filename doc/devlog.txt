@@ -68,3 +68,8 @@ Created a home page with a NONFUNCTIONAL logout button (can't figure out why?)
     Next step: figuring that out
     Next step: integrating APIs and creating a UI on the home page
 
+sultanA -- 2019-11-22 11:00 PM
+Logout function works, but logout button didnt; had to switch to <a>
+    Check this out?
+Cleaned up UI for login/registration
+
