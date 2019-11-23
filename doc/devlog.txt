@@ -46,17 +46,21 @@ Update README to include proper instructions
 leungD -- 2019-11-21 02:47 PM
 Worked more on databases and added more routes
 
-pengW -- 2019-11-21 3:09 PM
+pengW -- 2019-11-21 03:09 PM
 Make README up to date, and reformat Ahmed's devlogs up to code
 
-pengW -- 2019-11-21 1:54 PM
+pengW -- 2019-11-21 01:54 PM
 Add team flag to design doc
 
-sultanA -- 2019-11-22 2:11 PM
+sultanA -- 2019-11-22 02:11 PM
 Deleted extraneous Bootstrap material in the directory
 
-leungD -- 2019-11-22 2:46 PM
+leungD -- 2019-11-22 02:46 PM
 Added html functionality and added more app routes
 
-sultanA -- 2019-11-22 2:48 PM
+sultanA -- 2019-11-22 02:48 PM
 Worked a little bit on login and registration HTML
+
+sultanA -- 2019-11-22 08:00 PM
+Created a functional login page/method on Flask app
+Tidied up devlog (XX:XX AM/PM) time!
