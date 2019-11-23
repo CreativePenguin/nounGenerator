@@ -131,9 +131,9 @@ def logout():
     if 'user' in session:
         session.pop("user")
         return redirect(url_for("login"))
-        print("logged out")
     
-    return render_template("home.html")
+    # redirecting to login if not logged in — logout does not have a page!
+    return redirect(url_for("login"))
 
 if __name__ == "__main__":
     app.debug = True
