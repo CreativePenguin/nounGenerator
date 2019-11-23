@@ -61,6 +61,10 @@ Added html functionality and added more app routes
 sultanA -- 2019-11-22 02:48 PM
 Worked a little bit on login and registration HTML
 
-sultanA -- 2019-11-22 08:00 PM
+sultanA -- 2019-11-22 08:44PM
 Created a functional login page/method on Flask app
 Tidied up devlog (XX:XX AM/PM) time!
+Created a home page with a NONFUNCTIONAL logout button (can't figure out why?)
+    Next step: figuring that out
+    Next step: integrating APIs and creating a UI on the home page
+
