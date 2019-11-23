@@ -3,20 +3,21 @@
 {% block body %}
      <br> <br>
      <h2 class="text-dark" style="text-align: center; padding: 1em;">Login</h2>
-     <div class="login-form" style="text-align: center; display: block;">
-          <form style="width: 50%; display: inline-block;">
-               <div class="form-group">
-                    <label for="usernameinput">Username</label>
-                    <input type="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                         placeholder="Enter email">
-               </div>
-               <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-               </div>
-               <button type="submit" class="btn btn-primary" formaction="/loginHelp">Submit</button>
-               <button type="submit" class="btn btn-danger" formaction="/register">Register</button>
 
+
+     <div class="login-form" style="text-align: center; display: block;">
+          <form action="/login" method="GET" style="width: 50%; display: inline-block;">
+               <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" name="username" placeholder="Enter your username">
+               </div>
+
+               <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" name="password" placeholder="Enter your password">
+               </div>
+               <button type="submit" class="btn btn-primary">Submit</button>
+               <button type="submit" class="btn btn-danger" formaction="/register">Register</button>
           </form>
      </div>
 {% endblock %}

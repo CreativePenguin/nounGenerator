@@ -7,10 +7,16 @@ from flask import Flask
 from flask import render_template
 from flask import redirect
 from flask import url_for
+from flask import request
+from flask import flash
+from flask import session
 from os import urandom
 import urllib
 import json
 import sqlite3
+
+app = Flask(__name__)
+app.secret_key = urandom(32)
 
 # -----------------------------------------------------------------
 # DATABASE SETUP
@@ -30,21 +36,45 @@ if c.fetchone()[0] < 1:
 # -----------------------------------------------------------------
 # FLASK STUFF
 
-app = Flask(__name__)
-app.secret_key = urandom(32)
-
 @app.route("/", methods=['GET', 'POST'])
-def checkCreds():
+def root():
+    if 'user' in session:
+        return redirect("/home")
     return redirect("/login")
 
 @app.route("/login")
 def login():
+    # if user is already logged in, redirect back to discover
+    if 'user' in session:
+        return redirect(url_for('root'))
+    
+    # checking to see if something was input
+    if (request.args):
+        if (bool(request.args["username"]) and bool(request.args["password"])):
+            iUser = request.args["username"]
+            iPass = request.args["password"]
+
+            with sqlite3.connect(DB_FILE) as connection:
+                cur = connection.cursor()
+                qry = 'SELECT username, password FROM userdata;'
+                foo = cur.execute(qry)
+                userList = foo.fetchall()
+                for row in userList:
+                    if iUser == row[0]:
+                        if iPass == row[1]:
+                            session['user'] = iUser
+                            return redirect(url_for("root"))
+                        else:
+                            flash('Wrong password. Please try again.')
+                    else:
+                        flash('Unrecognized username. Please try again.')
+    
     return render_template("login.html")
 
-@app.route("/loginHelp")
-def loginHelp():
-    return None
 
+@app.route("/home")
+def home():
+    return "Hello!"
 
 @app.route("/register")
 def register():
@@ -52,10 +82,6 @@ def register():
 
 @app.route("/registerHelp")
 def registerHelp():
-    return None
-
-@app.route("/home")
-def home():
     return None
 
 @app.route("/leaderboards")
