@@ -114,7 +114,7 @@ def register():
                         if (iUser == row[0]):
                             flash('Username already taken! Please try again.')
                             return redirect(url_for("register"))                            
-                    qry = "INSERT INTO userdata VALUES('{}', '{}', 0);".format(iUser, iPass)
+                    qry = "INSERT INTO userdata VALUES('{}', '{}', 0, '');".format(iUser, iPass)
                     cur.execute(qry)
                     connection.commit()
                     flash('Successfully registered! Please log in.')
