@@ -2,6 +2,17 @@
 
 {% block body %}
 <h2 class="text-dark" style="text-align: center; padding: 1em;">Home</h2>
+<div style="margin: 1em; width: 100%" class="d-flex bd-highlight">
+     {% for selection in array %}
+          <div class="flex-fill" style="background-color: lightgray; border-radius: 5px;">
+               <h3 class="text-dark" style="text-align: center; font-weight: bold">{{selection[0]}}</h3>
+               {{ selection[0] }} <br>
+               {{ selection[1] }} <br>
+               {{ selection[2] }} <br>
+          </div>
+     {% endfor %}
+</div>
+
 {% endblock %}
 
 {% block logout %}

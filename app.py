@@ -14,6 +14,7 @@ from os import urandom
 import urllib
 import json
 import sqlite3
+import random
 
 app = Flask(__name__)
 app.secret_key = urandom(32)
@@ -133,9 +134,31 @@ def home():
     # checking to see if user is logged in
     if 'user' not in session:
         return redirect(url_for("root"))
+
+    resultArray = []
     
+    for i in range(5):
+        u = urllib.request.urlopen("https://restcountries.eu/rest/v2")
+        response = u.read()
+        data = json.loads(response)
+
+        # picking random country from API response
+        rand_num = random.randint(0, 249)
+
+        ctry_name = data[rand_num]['name']
+        ctry_capital = data[rand_num]['capital']
+        ctry_flag = data[rand_num]['flag']
+        ctry_currency = data[rand_num]['currencies'][0]['name']
+        ctry_population = data[rand_num]['population']
+        ctry_languages = []
+        for i in data[rand_num]['languages']:
+            ctry_languages.append(i['name'])
+
+        resultArray.append([ctry_name, ctry_capital, ctry_flag, ctry_currency, ctry_population, ctry_languages]);
+
     # rendering template
-    return render_template("home.html")
+    return render_template("home.html",
+        array=resultArray)
 
 if __name__ == "__main__":
     app.debug = True
