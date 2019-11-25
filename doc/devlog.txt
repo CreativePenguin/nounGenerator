@@ -73,3 +73,8 @@ Logout function works, but logout button didnt; had to switch to <a>
     Check this out?
 Cleaned up UI for login/registration
 
+sultanA -- 2019-11-25 02:28 PM
+Fixed login/registration
+Recreated userdata table in SQL to have countries owned and score
+Cleaned up code
+
