@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block body %}
+<h2 class="text-dark" style="text-align: center; padding: 1em;">{{ username }}</h2>
+{% endblock %}
+
+{% block logout %}
+<div style="text-align: center;">
+     <br>
+     <a class="text-danger" href="/logout">[Click here to logout.]</a>
+</div>
+{% endblock %}

@@ -77,6 +77,16 @@ def login():
     # rendering template
     return render_template("login.html")
 
+# LOGOUT ------------------------------
+@app.route("/logout")
+def logout():
+    if 'user' in session:
+        session.pop("user")
+        return redirect(url_for("login"))
+
+    # redirecting to login if not logged in — logout does not have a page!
+    return redirect(url_for("login"))
+
 # REGISTER ------------------------------
 @app.route("/register")
 def register():
@@ -104,7 +114,7 @@ def register():
                         if (iUser == row[0]):
                             flash('Username already taken! Please try again.')
                             return redirect(url_for("register"))                            
-                    qry = "INSERT INTO userdata VALUES('{}', '{}');".format(iUser, iPass)
+                    qry = "INSERT INTO userdata VALUES('{}', '{}', 0);".format(iUser, iPass)
                     cur.execute(qry)
                     connection.commit()
                     flash('Successfully registered! Please log in.')
@@ -120,20 +130,12 @@ def register():
 # HOME ------------------------------
 @app.route("/home")
 def home():
+    # checking to see if user is logged in
     if 'user' not in session:
         return redirect(url_for("root"))
     
+    # rendering template
     return render_template("home.html")
-
-# LOGOUT ------------------------------
-@app.route("/logout")
-def logout():
-    if 'user' in session:
-        session.pop("user")
-        return redirect(url_for("login"))
-    
-    # redirecting to login if not logged in — logout does not have a page!
-    return redirect(url_for("login"))
 
 if __name__ == "__main__":
     app.debug = True
