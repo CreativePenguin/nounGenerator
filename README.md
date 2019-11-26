@@ -20,7 +20,7 @@ pip install -r requirements.txt
 ```
 Run the code with
 ```sh
-python app.py
+python3 app.py
 ```
 Then go to the link http://127.0.0.1:5000/ (listed in terminal)
 

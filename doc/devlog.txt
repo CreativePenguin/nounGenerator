@@ -73,3 +73,40 @@ Logout function works, but logout button didnt; had to switch to <a>
     Check this out?
 Cleaned up UI for login/registration
 
+sultanA -- 2019-11-25 02:28 PM
+Fixed login/registration
+Recreated userdata table in SQL to have countries owned and score
+Cleaned up code
+
+sultanA -- 2019-11-25 08:15 PM
+Fixed minor errors
+Plugged in Countries API and successfully utilized to pull country names, flags, other data and display on home page
+
+leungD -- 2019-11-25 10:56 PM
+Created country.html
+Made it so that visit button redirects to country page
+Cleaned up button code on home.html
+Made resultArray a global variable 
+
+pengW -- 2019-11-26 07:02 AM
+Finally bring README up to code + add HOME STRETCH PLAN
+
+HOME STRETCH PLAN
+[ ] Make questions web page, and general template structure -- Derek
+[ ] Grab proper info from countries api and wikipedia -- Winston
+[ ] Figure out how to proper keep track of battles, and conquered countries -- Ahmed
+    Will need to store use in data base for certain amount of time
+    May be cut in place of high score system
+[ ] Refresh countries every so often -- Not Assigned Yet
+    May need to be cut, and just have a set couple of countries
+    [ ] How to store conquered country -- Ahmed
+    [ ] Quiz API Data -- Winston
+
+EXTRA POINTS
+- Timer for amount of time allowed for each question
+- Leaderboard that keeps track of who has the most countries
+- Draw questions from more API's
+- Minigames while you're waiting for another person
+
+sultanA -- 2019-11-26 09:42 AM
+Fixed errors involving urllib and json
