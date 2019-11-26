@@ -21,7 +21,7 @@ app.secret_key = urandom(32)
 
 # -----------------------------------------------------------------
 # DATABASE SETUP
-DB_FILE = "info.db"
+DB_FILE = "Info.db"
 db = sqlite3.connect(DB_FILE)
 
 c = db.cursor()
@@ -30,7 +30,7 @@ if c.fetchone()[0] < 1:
     c.execute("CREATE TABLE userdata(username TEXT, password TEXT);")
 c.execute(''' SELECT count(name) FROM sqlite_master WHERE type='table' AND name='countrydata' ''')
 if c.fetchone()[0] < 1:
-    c.execute("CREATE TABLE countrydata(countryname TEXT, population INTEGER, capital TEXT, demonym TEXT, flag_url BLOB, languages BLOB);")
+    c.execute("CREATE TABLE countrydata(countryname TEXT, population INTEGER, capital TEXT, demonym TEXT, flag_url TEXT, languages BLOB, owner TEXT);")
 c.execute(''' SELECT count(name) FROM sqlite_master WHERE type='table' AND name='scores' ''')
 if c.fetchone()[0] < 1:
     c.execute("CREATE TABLE scores(username TEXT, score1 INTEGER, score2 INTEGER, score3 INTEGER, score4 INTEGER, score5 INTEGER);")
@@ -177,6 +177,10 @@ def country(countryName):
     
     # if not currently available, return to root
     return redirect(url_for("root"))
+
+@app.route("/leaderboards")
+def leaderboard():
+    return render_template("leaderboard.html")
 
 
 if __name__ == "__main__":

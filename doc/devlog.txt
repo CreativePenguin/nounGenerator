@@ -86,7 +86,7 @@ leungD -- 2019-11-25 10:56 PM
 Created country.html
 Made it so that visit button redirects to country page
 Cleaned up button code on home.html
-Made resultArray a global variable 
+Made resultArray a global variable
 
 pengW -- 2019-11-26 07:02 AM
 Finally bring README up to code + add HOME STRETCH PLAN
@@ -114,3 +114,6 @@ Fixed errors involving urllib and json
 sultanA -- 2019-11-26 02:10 PM
 Edited devlog
 Made minor edits to webpages & Jinja templates
+
+leungD-- 2019-11-26 02:47 PM
+fixed database problem and also started working on leaderboards
