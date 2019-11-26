@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block body %}
-<h2 class="text-dark" style="text-align: center; padding: 0;">Home</h2>
+<h2 class="text-dark" style="text-align: center; padding: 0; font-weight: bold;">Home</h2>
 <div style="margin: 1em;" class="d-flex bd-highlight">
      {% for selection in array %}
           <div class="flex-fill" style="text-align: center; display: block; background-color: gainsboro; border-radius: 20px; margin: 0.5em; padding: 1em;">
@@ -16,7 +16,7 @@
 {% block logout %}
 <div style="text-align: center;">
      <br>
-     <a>Logged in as: {{username}}</a>
+     <a>Logged in as: {{ username }}</a>
 </div>
 <div style="text-align: center;">
      <a class="text-danger" href="/logout">[Click here to logout.]</a>

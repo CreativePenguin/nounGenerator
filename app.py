@@ -130,6 +130,7 @@ def register():
 
 # HOME ------------------------------
 resultArray = []
+
 @app.route("/home")
 def home():
     global resultArray
@@ -165,13 +166,17 @@ def home():
     return render_template("home.html",
         array=resultArray, username= session['user'])
 
+# COUNTRY ------------------------------
 @app.route("/country/<countryName>")
 def country(countryName):
     index = -1
     for i in range(len(resultArray)):
-        if(countryName == resultArray[i][0]):
+        if (countryName == resultArray[i][0]):
             index = i
-    return render_template("country.html",array=resultArray,index = index)
+            return render_template("country.html", selection=resultArray[index], owner="")
+    
+    # if not currently available, return to root
+    return redirect(url_for("root"))
 
 
 if __name__ == "__main__":
