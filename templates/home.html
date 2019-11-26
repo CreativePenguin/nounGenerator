@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 
 {% block body %}
-<h2 class="text-dark" style="text-align: center; padding: 1em;">Home</h2>
-<div style="margin: 1em; width: 100%" class="d-flex bd-highlight">
+<h2 class="text-dark" style="text-align: center; padding: 0;">Home</h2>   
+<div style="margin: 1em;" class="d-flex bd-highlight">
      {% for selection in array %}
-          <div class="flex-fill" style="background-color: lightgray; border-radius: 5px;">
-               <h3 class="text-dark" style="text-align: center; font-weight: bold">{{selection[0]}}</h3>
-               {{ selection[0] }} <br>
-               {{ selection[1] }} <br>
-               {{ selection[2] }} <br>
+          <div class="flex-fill" style="text-align: center; display: block; background-color: gainsboro; border-radius: 20px; margin: 0.5em; padding: 1em;">
+               <img src="{{ selection[2] }}" style="width: 200px; height: 125px; align-content: center; margin-left: auto; margin-right: auto; display: block;">
+               <h3 class="text-dark" style="text-align: center; font-weight: bold; padding: 1em;">{{selection[0]}}</h3>
+               <button type="submit" style="align-content: center; vertical-align: bottom;" class="btn btn-primary">Visit</button>
           </div>
      {% endfor %}
 </div>
@@ -20,4 +19,5 @@
      <br>
      <a class="text-danger" href="/logout">[Click here to logout.]</a>
 </div>
+<br>
 {% endblock %}

@@ -154,7 +154,11 @@ def home():
         for i in data[rand_num]['languages']:
             ctry_languages.append(i['name'])
 
-        resultArray.append([ctry_name, ctry_capital, ctry_flag, ctry_currency, ctry_population, ctry_languages]);
+        countryArray = [ctry_name, ctry_capital, ctry_flag, ctry_currency, ctry_population, ctry_languages]
+        if countryArray not in resultArray:
+            resultArray.append(countryArray)
+        else:
+            return redirect(url_for("home"))
 
     # rendering template
     return render_template("home.html",
