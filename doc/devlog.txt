@@ -93,6 +93,8 @@ HOME STRETCH PLAN
 [ ] Figure out how to proper keep track of battles, and conquered countries -- Ahmed
     Will need to store use in data base for certain amount of time
     May be cut in place of high score system
+[ ] Refresh countries every so often -- Not Assigned Yet
+    May need to be cut, and just have a set couple of countries
     [ ] How to store conquered country -- Ahmed
     [ ] Quiz API Data -- Winston
 
