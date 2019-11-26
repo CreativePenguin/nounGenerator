@@ -86,7 +86,7 @@ def logout():
         return redirect(url_for("login"))
 
     # redirecting to login if not logged in — logout does not have a page!
-    return redirect(url_for("login"))
+    return redirect(url_for("root"))
 
 # REGISTER ------------------------------
 @app.route("/register")
