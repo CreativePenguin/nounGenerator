@@ -110,3 +110,7 @@ EXTRA POINTS
 
 sultanA -- 2019-11-26 09:42 AM
 Fixed errors involving urllib and json
+
+sultanA -- 2019-11-26 02:10 PM
+Edited devlog
+Made minor edits to webpages & Jinja templates
