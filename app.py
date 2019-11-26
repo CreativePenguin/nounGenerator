@@ -11,8 +11,6 @@ from flask import request
 from flask import flash
 from flask import session
 from os import urandom
-import urllib
-import json
 import sqlite3
 
 app = Flask(__name__)
@@ -50,7 +48,7 @@ def login():
     # if user is already logged in, redirect back to discover to be handled
     if 'user' in session:
         return redirect(url_for('root'))
-    
+
     # checking to see if something was input
     if (request.args):
         if (bool(request.args["username"]) and bool(request.args["password"])):
@@ -73,7 +71,7 @@ def login():
                         flash('Unrecognized username! Please try again.')
         else:
             flash('Not all fields filled! Please try again.')
-    
+
     # rendering template
     return render_template("login.html")
 
@@ -103,7 +101,7 @@ def register():
                     for row in userList:
                         if (iUser == row[0]):
                             flash('Username already taken! Please try again.')
-                            return redirect(url_for("register"))                            
+                            return redirect(url_for("register"))
                     qry = "INSERT INTO userdata VALUES('{}', '{}');".format(iUser, iPass)
                     cur.execute(qry)
                     connection.commit()
@@ -113,7 +111,7 @@ def register():
                 flash('Passwords do not match! Please try again.')
         else:
             flash('Not all fields filled! Please try again.')
-    
+
     # rendering template
     return render_template("register.html")
 
@@ -122,7 +120,7 @@ def register():
 def home():
     if 'user' not in session:
         return redirect(url_for("root"))
-    
+
     return render_template("home.html")
 
 # LOGOUT ------------------------------
@@ -131,9 +129,10 @@ def logout():
     if 'user' in session:
         session.pop("user")
         return redirect(url_for("login"))
-    
+
     # redirecting to login if not logged in — logout does not have a page!
     return redirect(url_for("login"))
+
 
 if __name__ == "__main__":
     app.debug = True
