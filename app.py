@@ -21,7 +21,7 @@ app.secret_key = urandom(32)
 
 # -----------------------------------------------------------------
 # DATABASE SETUP
-DB_FILE = "info.db"
+DB_FILE = "Info.db"
 db = sqlite3.connect(DB_FILE)
 
 c = db.cursor()
