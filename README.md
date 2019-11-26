@@ -5,6 +5,7 @@ conquering.
 Real life results will vary. Visiting the actual country that you own,
 and verifying whether or not it belongs to you is not recommended.
 Please do not refer to the people in that country as your subjects.
+
 ## Install  
 Pip is required https://pip.pypa.io/en/stable/installing/  
 
@@ -23,6 +24,17 @@ Run the code with
 python app.py
 ```
 Then go to the link http://127.0.0.1:5000/ (listed in terminal)
+
+
+## API's
+### [Countries API](https://docs.google.com/document/d/1C-umxnBAIUzQI9kLDaXG4-YbFsiOwwRTJ5c-DXAHTRM/edit)  
+Used to pick a country, as well as get extra info about them to use in trivia questions
+
+### [Open Trivia API](https://docs.google.com/document/d/1yp2nicOExDYlrEfdvqspD17Kz5c-xMSWHudfmNjJgQ4/edit)  
+Used to get general trivia questions that we will use in website
+
+### [Wikipedia API](https://docs.google.com/document/d/1KNf_h_Rysiftc88uZNZO4LMpAyQprUTSj-eg5CMz9a8/edit)  
+Used to get extra info about our specific countries
 
 ## Contributing
 Fork repo, edit master branch and request a pull
