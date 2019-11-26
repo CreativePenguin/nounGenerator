@@ -11,8 +11,6 @@ from flask import request
 from flask import flash
 from flask import session
 from os import urandom
-import urllib
-import json
 import sqlite3
 import random
 
@@ -138,7 +136,6 @@ def home():
     if 'user' not in session:
         return redirect(url_for("root"))
 
-
     for i in range(5):
         u = urllib.request.urlopen("https://restcountries.eu/rest/v2")
         response = u.read()
@@ -173,6 +170,7 @@ def country(countryName):
         if(countryName == resultArray[i][0]):
             index = i
     return render_template("country.html",array=resultArray,index = index)
+
 
 if __name__ == "__main__":
     app.debug = True
