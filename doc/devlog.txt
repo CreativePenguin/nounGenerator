@@ -93,7 +93,7 @@ Finally bring README up to code + add HOME STRETCH PLAN
 
 HOME STRETCH PLAN
 [ ] Make questions web page, and general template structure -- Derek
-[ ] Grab proper info from countries api and wikipedia -- Winston
+[ ] Grab proper info from countries API and wikipedia -- Winston
 [ ] Figure out how to proper keep track of battles, and conquered countries -- Ahmed
     Will need to store use in data base for certain amount of time
     May be cut in place of high score system
@@ -101,6 +101,7 @@ HOME STRETCH PLAN
     May need to be cut, and just have a set couple of countries
     [ ] How to store conquered country -- Ahmed
     [ ] Quiz API Data -- Winston
+[ ] Adding more info to country pages -- Not Assigned Yet
 
 EXTRA POINTS
 - Timer for amount of time allowed for each question
