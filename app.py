@@ -11,6 +11,8 @@ from flask import request
 from flask import flash
 from flask import session
 from os import urandom
+import urllib
+import json
 import sqlite3
 import random
 
