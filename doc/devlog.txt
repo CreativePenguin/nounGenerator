@@ -78,3 +78,8 @@ Fixed login/registration
 Recreated userdata table in SQL to have countries owned and score
 Cleaned up code
 
+leungD-- 2019-11-25 10:56 PM
+Created country.html
+Made it so that visit button redirects to country page
+Cleaned up button code on home.html
+Made resultArray a global variable 

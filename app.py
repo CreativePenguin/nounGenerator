@@ -51,7 +51,7 @@ def login():
     # if user is already logged in, redirect back to discover to be handled
     if 'user' in session:
         return redirect(url_for('root'))
-    
+
     # checking to see if something was input
     if (request.args):
         if (bool(request.args["username"]) and bool(request.args["password"])):
@@ -74,7 +74,7 @@ def login():
                         flash('Unrecognized username! Please try again.')
         else:
             flash('Not all fields filled! Please try again.')
-    
+
     # rendering template
     return render_template("login.html")
 
@@ -114,7 +114,7 @@ def register():
                     for row in userList:
                         if (iUser == row[0]):
                             flash('Username already taken! Please try again.')
-                            return redirect(url_for("register"))                            
+                            return redirect(url_for("register"))
                     qry = "INSERT INTO userdata VALUES('{}', '{}', 0, '');".format(iUser, iPass)
                     cur.execute(qry)
                     connection.commit()
@@ -124,19 +124,21 @@ def register():
                 flash('Passwords do not match! Please try again.')
         else:
             flash('Not all fields filled! Please try again.')
-    
+
     # rendering template
     return render_template("register.html")
 
 # HOME ------------------------------
+resultArray = []
 @app.route("/home")
 def home():
+    global resultArray
+    resultArray = []
     # checking to see if user is logged in
     if 'user' not in session:
         return redirect(url_for("root"))
 
-    resultArray = []
-    
+
     for i in range(5):
         u = urllib.request.urlopen("https://restcountries.eu/rest/v2")
         response = u.read()
@@ -162,7 +164,15 @@ def home():
 
     # rendering template
     return render_template("home.html",
-        array=resultArray)
+        array=resultArray, username= session['user'])
+
+@app.route("/country/<countryName>")
+def country(countryName):
+    index = -1
+    for i in range(len(resultArray)):
+        if(countryName == resultArray[i][0]):
+            index = i
+    return render_template("country.html",array=resultArray,index = index)
 
 if __name__ == "__main__":
     app.debug = True
