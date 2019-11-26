@@ -78,13 +78,17 @@ Fixed login/registration
 Recreated userdata table in SQL to have countries owned and score
 Cleaned up code
 
-leungD-- 2019-11-25 10:56 PM
+sultanA -- 2019-11-25 08:15 PM
+Fixed minor errors
+Plugged in Countries API and successfully utilized to pull country names, flags, other data and display on home page
+
+leungD -- 2019-11-25 10:56 PM
 Created country.html
 Made it so that visit button redirects to country page
 Cleaned up button code on home.html
 Made resultArray a global variable 
 
-pengW -- 2019-11-26 7:02 AM
+pengW -- 2019-11-26 07:02 AM
 Finally bring README up to code + add HOME STRETCH PLAN
 
 HOME STRETCH PLAN
@@ -102,3 +106,6 @@ EXTRA POINTS
 - Timer for amount of time allowed for each question
 - Leaderboard that keeps track of who has the most countries
 - Draw questions from more API's
+
+sultanA -- 2019-11-26 09:42 AM
+Fixed errors involving urllib and json
