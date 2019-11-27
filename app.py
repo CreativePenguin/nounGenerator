@@ -172,7 +172,19 @@ def country(countryName):
         if (countryName == resultArray[i][0]):
             index = i
             return render_template("country.html", selection=resultArray[index], owner="")
-    
+
+    # if not currently available, return to root
+    return redirect(url_for("root"))
+
+# CHALLENGE ------------------------------
+@app.route("/challenge/<countryName>")
+def challenge(countryName):
+    index = -1
+    for i in range(len(resultArray)):
+        if (countryName == resultArray[i][0]):
+            index = i
+            return render_template("challenge.html", selection=resultArray[index], owner="")
+
     # if not currently available, return to root
     return redirect(url_for("root"))
 
