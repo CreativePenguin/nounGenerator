@@ -8,7 +8,7 @@
 <p class="text-dark" style="text-align: left; padding-left: 5vw; font-weight: bold;">LEADER: {{ owner }}</p>
 <p class="text-dark" style="text-align: left; padding-left: 5vw; font-style: italic;">
      Capital: {{ selection[1] }}
-     <br> 
+     <br>
      Currency: {{ selection[3] }}
      <br>
      Population: {{ selection[4] }}
@@ -16,6 +16,11 @@
      Languages: {{ selection[5] }}
      <br>
 </p>
+</div>
+<br>
+<div style="text-align: center;">
+    <a style="align-content: center; vertical-align: bottom; text-align: center;" class="btn btn-primary" href="/challenge/{{ selection [0] }}">Challenge</a>
+</div>
 {% endblock %}
 
 {% block logout %}
