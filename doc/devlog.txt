@@ -117,3 +117,8 @@ Made minor edits to webpages & Jinja templates
 
 leungD-- 2019-11-26 02:47 PM
 fixed database problem and also started working on leaderboards
+
+sultanA -- 2019-11-26 04:51 PM
+Integrated country API into project
+Created individual country pages
+Fine tuned random country selection process
