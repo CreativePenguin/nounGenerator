@@ -15,16 +15,14 @@ import urllib
 import json
 import sqlite3
 import random
+from utl.dbvars import db_cursor as c
+from utl.dbvars import DB_FILE
 
 app = Flask(__name__)
 app.secret_key = urandom(32)
 
 # -----------------------------------------------------------------
 # DATABASE SETUP
-DB_FILE = "Info.db"
-db = sqlite3.connect(DB_FILE)
-
-c = db.cursor()
 c.execute(''' SELECT count(name) FROM sqlite_master WHERE type='table' AND name='userdata' ''')
 if c.fetchone()[0] < 1:
     c.execute("CREATE TABLE userdata(username TEXT, password TEXT);")
