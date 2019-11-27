@@ -2,8 +2,6 @@ from urllib import request
 import json
 from dbvars import db_cursor as c
 
-country_api_link = 'https://restcountries.eu/rest/v2/'
-
 def get_country_info(country):
     """ Returns matrix storing name, population and so on """
     api = json.loads(request.urlopen('https://restcountries.eu/rest/v2/name/{}'
@@ -12,7 +10,8 @@ def get_country_info(country):
         'name': api['name'],
         'capital': api['capital'],
         'subregion': api['subregion'],
-        'population': api['population']
+        'population': api['population'],
+        'flag':api['population']
     }
 
     return api
@@ -22,6 +21,6 @@ def get_country_params():
     return ['name', 'capital', 'subregion', 'population']
 
 def store_country_info():
-    c.execute('something')
+    c.execute("")
 
 print(get_country_info('China'))

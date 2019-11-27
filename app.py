@@ -13,6 +13,7 @@ from flask import session
 from os import urandom
 import sqlite3
 from utl.dbvars import db_cursor as c
+from utl.dbvars import DB_FILE
 
 app = Flask(__name__)
 app.secret_key = urandom(32)
