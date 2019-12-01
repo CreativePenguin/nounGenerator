@@ -132,3 +132,6 @@ sultanA -- 2019-11-26 04:51 PM
 Integrated country API into project
 Created individual country pages
 Fine tuned random country selection process
+
+pengW -- 2019-12-1 6:09 PM
+Add methods in order to be able to store api info
