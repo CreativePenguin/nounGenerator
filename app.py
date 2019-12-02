@@ -25,7 +25,7 @@ app.secret_key = urandom(32)
 # DATABASE SETUP
 c.execute(''' SELECT count(name) FROM sqlite_master WHERE type='table' AND name='userdata' ''')
 if c.fetchone()[0] < 1:
-    c.execute("CREATE TABLE userdata(username TEXT, password TEXT);")
+    c.execute("CREATE TABLE userdata(username TEXT, password TEXT, countriesOwned INTEGER);")
 c.execute(''' SELECT count(name) FROM sqlite_master WHERE type='table' AND name='countrydata' ''')
 if c.fetchone()[0] < 1:
     c.execute("CREATE TABLE countrydata(countryname TEXT, population INTEGER, capital TEXT, demonym TEXT, flag_url TEXT, languages BLOB, owner TEXT);")
@@ -113,7 +113,7 @@ def register():
                         if (iUser == row[0]):
                             flash('Username already taken! Please try again.')
                             return redirect(url_for("register"))
-                    qry = "INSERT INTO userdata VALUES('{}', '{}', 0, '');".format(iUser, iPass)
+                    qry = "INSERT INTO userdata VALUES('{}', '{}', 0);".format(iUser, iPass)
                     cur.execute(qry)
                     connection.commit()
                     flash('Successfully registered! Please log in.')
@@ -171,7 +171,9 @@ def country(countryName):
     for i in range(len(resultArray)):
         if (countryName == resultArray[i][0]):
             index = i
-            return render_template("country.html", selection=resultArray[index], owner="")
+            owner = None
+            #TODO grab owner from database and set it to owner
+            return render_template("country.html", selection=resultArray[index], owner=owner)
 
     # if not currently available, return to root
     return redirect(url_for("root"))
@@ -183,7 +185,7 @@ def challenge(countryName):
     for i in range(len(resultArray)):
         if (countryName == resultArray[i][0]):
             index = i
-            return render_template("challenge.html", selection=resultArray[index], owner="")
+            return render_template("challenge.html", selection=resultArray[index])
 
     # if not currently available, return to root
     return redirect(url_for("root"))
