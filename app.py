@@ -46,6 +46,7 @@ def root():
 # LOGIN ------------------------------
 @app.route("/login")
 def login():
+    """Login page -- Redirects if user is logged in. Leads to home page & account creation"""
     # if user is already logged in, redirect back to discover to be handled
     if 'user' in session:
         return redirect(url_for('root'))
@@ -79,6 +80,7 @@ def login():
 # LOGOUT ------------------------------
 @app.route("/logout")
 def logout():
+    """Removes user session, and leads back to login page"""
     if 'user' in session:
         session.pop("user")
         return redirect(url_for("login"))
@@ -89,6 +91,7 @@ def logout():
 # REGISTER ------------------------------
 @app.route("/register")
 def register():
+    """Register page -- Create a new account. Leads into Login Page"""
     # if user is already logged in, redirect back to root to be handled
     if 'user' in session:
         return redirect(url_for('root'))
@@ -125,17 +128,21 @@ def register():
     # rendering template
     return render_template("register.html")
 
+
 # HOME ------------------------------
 resultArray = []
 
+
 @app.route("/home")
 def home():
+    """Home Page -- Shows 5 random countries"""
     global resultArray
     resultArray = []
     # checking to see if user is logged in
     if 'user' not in session:
         return redirect(url_for("root"))
 
+    # Chooses and displays 5 random countries
     for i in range(5):
         u = urllib.request.urlopen("https://restcountries.eu/rest/v2")
         response = u.read()
@@ -166,6 +173,7 @@ def home():
 # COUNTRY ------------------------------
 @app.route("/country/<countryName>")
 def country(countryName):
+    """Each country has a different web page for a different quiz"""
     index = -1
     for i in range(len(resultArray)):
         if (countryName == resultArray[i][0]):
@@ -180,6 +188,7 @@ def country(countryName):
 # CHALLENGE ------------------------------
 @app.route("/challenge/<countryName>")
 def challenge(countryName):
+    """Challenge page where you wait when someone else is trying to log in"""
     index = -1
     for i in range(len(resultArray)):
         if (countryName == resultArray[i][0]):
@@ -197,6 +206,7 @@ def challenge(countryName):
 
 @app.route("/leaderboards")
 def leaderboard():
+    """Leaderboard page shows who owns what country and so on"""
     stuff = [] #the big list of all the stuff that's going into the leaderboard
     with sqlite3.connect(DB_FILE) as connection:
         cur = connection.cursor()

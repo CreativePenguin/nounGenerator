@@ -3,7 +3,7 @@ import json
 from dbvars import db_cursor as c
 
 def get_country_info(country):
-    """ Returns matrix storing name, population and so on """
+    """Returns matrix storing name, population and so on"""
     api = json.loads(request.urlopen('https://restcountries.eu/rest/v2/name/{}'
                                      .format(country)).read())[0]
     filter_api_info = {
@@ -20,11 +20,13 @@ def get_country_info(country):
     # return filter_api_info
 
 def get_country_params():
+    """Stores the api parameters used to make trivia questions"""
     return ['countryname', 'population', 'capital', 'subregion', 'population']
 
 def store_country_info(country):
     api_info = get_country_info(country)
-    c.execute("SELECT owner FROM countrydata WHERE countrydata.countryname = {}".format(country))
+    c.execute('''SELECT owner FROM countrydata
+              WHERE countrydata.countryname = {}'''.format(country))
     api_info['owner'] = c.fetchone()[0]
     c.execute('''INSERT INTO countrydata VALUES (
 "{countryname}",
