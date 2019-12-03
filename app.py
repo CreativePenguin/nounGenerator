@@ -23,7 +23,6 @@ app.secret_key = urandom(32)
 
 # -----------------------------------------------------------------
 # DATABASE SETUP
-## userdata -- stores username & password +
 c.execute(''' SELECT count(name) FROM sqlite_master WHERE type='table' AND name='userdata' ''')
 if c.fetchone()[0] < 1:
     c.execute("CREATE TABLE userdata(username TEXT, password TEXT, countriesOwned INTEGER, countryList BLOB);")
