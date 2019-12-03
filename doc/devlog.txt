@@ -143,3 +143,6 @@ Added simple country claiming system
 
 pengW -- 2019-12-3 9:23 AM
 Add docstrings for python.
+
+pengW -- 2019-12-3 3:14 PM
+Can now retrieve data from trivia api. Will need to organize later
