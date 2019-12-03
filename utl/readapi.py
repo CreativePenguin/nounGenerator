@@ -1,6 +1,5 @@
 from urllib import request
 import json
-from dbvars import db_cursor as c
 
 
 COUNTRY_API_LINK = 'https://restcountries.eu/rest/v2/'
@@ -30,12 +29,11 @@ def get_country_info(country):
 def get_country_params():
     """Stores the api parameters used to make trivia questions"""
     return ['countryname', 'population', 'capital', 'subregion', 'population']
-
-
+    
+"""
 def store_country_info(country):
     api_info = get_country_info(country)
-    c.execute('''SELECT owner FROM countrydata
-              WHERE countrydata.countryname = {}'''.format(country))
+    c.execute("SELECT owner FROM countrydata WHERE countrydata.countryname = {}".format(country))
     api_info['owner'] = c.fetchone()[0]
     c.execute('''INSERT INTO countrydata VALUES (
 "{countryname}",
@@ -46,7 +44,7 @@ def store_country_info(country):
 "{languages}",
 "{owner}");'''.format(**api_info))
     return api_info['owner']
-
+"""
 
 def get_trivia_info():
     return None

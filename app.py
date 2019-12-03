@@ -15,12 +15,11 @@ import urllib
 import json
 import sqlite3
 import random
-from utl.dbvars import db_cursor as c
-from utl.dbvars import DB_FILE
 import utl.readapi as readapi
 
 app = Flask(__name__)
 app.secret_key = urandom(32)
+
 
 # -----------------------------------------------------------------
 # DATABASE SETUP
@@ -30,9 +29,6 @@ if c.fetchone()[0] < 1:
 c.execute(''' SELECT count(name) FROM sqlite_master WHERE type='table' AND name='countrydata' ''')
 if c.fetchone()[0] < 1:
     c.execute("CREATE TABLE countrydata(countryname TEXT, owner TEXT, hiScore INTEGER);")
-c.execute(''' SELECT count(name) FROM sqlite_master WHERE type='table' AND name='scores' ''')
-if c.fetchone()[0] < 1:
-    c.execute("CREATE TABLE scores(username TEXT, score1 INTEGER, score2 INTEGER, score3 INTEGER, score4 INTEGER, score5 INTEGER);")
 
 # -----------------------------------------------------------------
 # FLASK STUFF
