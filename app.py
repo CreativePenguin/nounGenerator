@@ -23,6 +23,7 @@ app.secret_key = urandom(32)
 
 # -----------------------------------------------------------------
 # DATABASE SETUP
+## userdata -- stores username & password +
 c.execute(''' SELECT count(name) FROM sqlite_master WHERE type='table' AND name='userdata' ''')
 if c.fetchone()[0] < 1:
     c.execute("CREATE TABLE userdata(username TEXT, password TEXT, countriesOwned INTEGER, countryList BLOB);")
@@ -130,6 +131,7 @@ def register():
 
 
 # HOME ------------------------------
+# TODO: Add comment about what resultArray does
 resultArray = []
 
 
@@ -194,7 +196,7 @@ def challenge(countryName):
         if (countryName == resultArray[i][0]):
             index = i
     with sqlite3.connect(DB_FILE) as connection:
-        doesntExist = True #if it's in the country database [ONLY CLAIMED COUNTRIES ARE IN THE DATABASE]
+        doesntExist = True  # if it's in the country database [ONLY CLAIMED COUNTRIES ARE IN THE DATABASE]
         cur = connection.cursor()
         bruh = cur.execute('SELECT * FROM countrydata;')
         for i in bruh:
@@ -207,12 +209,13 @@ def challenge(countryName):
 @app.route("/leaderboards")
 def leaderboard():
     """Leaderboard page shows who owns what country and so on"""
-    stuff = [] #the big list of all the stuff that's going into the leaderboard
+    # stuff stores what goes into leaderboard
+    stuff = []
     with sqlite3.connect(DB_FILE) as connection:
         cur = connection.cursor()
         cur.execute('SELECT username FROM userdata;')
         names = cur.fetchall()
-    for i in names:#loops through all registered usernames
+    for i in names:  # loops through all registered usernames
         cur.execute("SELECT * FROM countrydata WHERE OWNER LIKE ? ;",(i[0],)) #cross references username with country owners
         count = len(cur.fetchall())
         stuff.append([i,count])
