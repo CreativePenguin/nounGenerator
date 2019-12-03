@@ -145,7 +145,8 @@ def home():
         return redirect(url_for("root"))
 
     # Chooses and displays 5 random countries
-    for i in range(5):
+    count = 0
+    while count < 5:
         u = urllib.request.urlopen("https://restcountries.eu/rest/v2")
         response = u.read()
         data = json.loads(response)
@@ -163,10 +164,11 @@ def home():
             ctry_languages.append(i['name'])
 
         countryArray = [ctry_name, ctry_capital, ctry_flag, ctry_currency, ctry_population, ctry_languages]
-        if countryArray not in resultArray:
+        if countryArray not in resultArray and ctry_population > 50000000:
+            count = count + 1
             resultArray.append(countryArray)
         else:
-            return redirect(url_for("home"))
+            count = count
 
     # rendering template
     return render_template("home.html",
