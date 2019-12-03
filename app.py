@@ -17,6 +17,7 @@ import sqlite3
 import random
 from utl.dbvars import db_cursor as c
 from utl.dbvars import DB_FILE
+import utl.readapi as readapi
 
 app = Flask(__name__)
 app.secret_key = urandom(32)
@@ -116,7 +117,8 @@ def register():
                         if (iUser == row[0]):
                             flash('Username already taken! Please try again.')
                             return redirect(url_for("register"))
-                    cur.execute("INSERT INTO userdata VALUES (?, ?, ?, ?)", (iUser, iPass, 0 , ""))
+                    cur.execute("INSERT INTO userdata VALUES (?, ?, ?, ?, ?)",
+                                (iUser, iPass, 0, "", readapi.trivia_apitoken()))
                     connection.commit()
                     flash('Successfully registered! Please log in.')
                     return redirect("/login")
