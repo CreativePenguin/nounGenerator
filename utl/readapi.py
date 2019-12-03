@@ -2,6 +2,7 @@ from urllib import request
 import json
 from dbvars import db_cursor as c
 
+
 def get_country_info(country):
     """Returns matrix storing name, population and so on"""
     api = json.loads(request.urlopen('https://restcountries.eu/rest/v2/name/{}'
@@ -12,16 +13,18 @@ def get_country_info(country):
         'subregion': api['subregion'],
         'population': api['population'],
         'demonym': api['demonym'],
-        'flag':api['flag'],
-        'languages':api['languages']
+        'flag': api['flag'],
+        'languages': api['languages']
     }
 
-    return api
-    # return filter_api_info
+    # return api
+    return filter_api_info
+
 
 def get_country_params():
     """Stores the api parameters used to make trivia questions"""
     return ['countryname', 'population', 'capital', 'subregion', 'population']
+
 
 def store_country_info(country):
     api_info = get_country_info(country)
