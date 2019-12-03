@@ -34,7 +34,7 @@ Used to pick a country, as well as get extra info about them to use in trivia qu
 Used to get general trivia questions that we will use in website
 
 ### [Wikipedia API](https://docs.google.com/document/d/1KNf_h_Rysiftc88uZNZO4LMpAyQprUTSj-eg5CMz9a8/edit)  
-Used to get extra info about our specific countries
+Used to get extra info about our specific countries as well as display trivia while waiting in the challenge pages.
 
 ## Contributing
 Fork repo, edit master branch and request a pull

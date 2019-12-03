@@ -139,4 +139,7 @@ Add methods in order to be able to store api info
 leungD -- 2019-12-2 11:45 PM
 Overhauled Databases
 Added Leaderboards
-Added simple country claiming system 
+Added simple country claiming system
+
+pengW -- 2019-12-3 9:23 AM
+Add docstrings for python.
