@@ -25,10 +25,10 @@ app.secret_key = urandom(32)
 # DATABASE SETUP
 c.execute(''' SELECT count(name) FROM sqlite_master WHERE type='table' AND name='userdata' ''')
 if c.fetchone()[0] < 1:
-    c.execute("CREATE TABLE userdata(username TEXT, password TEXT, countriesOwned INTEGER);")
+    c.execute("CREATE TABLE userdata(username TEXT, password TEXT, countriesOwned INTEGER, countryList BLOB);")
 c.execute(''' SELECT count(name) FROM sqlite_master WHERE type='table' AND name='countrydata' ''')
 if c.fetchone()[0] < 1:
-    c.execute("CREATE TABLE countrydata(countryname TEXT, population INTEGER, capital TEXT, demonym TEXT, flag_url TEXT, languages BLOB, owner TEXT);")
+    c.execute("CREATE TABLE countrydata(countryname TEXT, owner TEXT, hiScore INTEGER);")
 c.execute(''' SELECT count(name) FROM sqlite_master WHERE type='table' AND name='scores' ''')
 if c.fetchone()[0] < 1:
     c.execute("CREATE TABLE scores(username TEXT, score1 INTEGER, score2 INTEGER, score3 INTEGER, score4 INTEGER, score5 INTEGER);")
@@ -113,8 +113,7 @@ def register():
                         if (iUser == row[0]):
                             flash('Username already taken! Please try again.')
                             return redirect(url_for("register"))
-                    qry = "INSERT INTO userdata VALUES('{}', '{}', 0);".format(iUser, iPass)
-                    cur.execute(qry)
+                    cur.execute("INSERT INTO userdata VALUES (?, ?, ?, ?)", (iUser, iPass, 0 , ""))
                     connection.commit()
                     flash('Successfully registered! Please log in.')
                     return redirect("/login")
@@ -185,14 +184,30 @@ def challenge(countryName):
     for i in range(len(resultArray)):
         if (countryName == resultArray[i][0]):
             index = i
-            return render_template("challenge.html", selection=resultArray[index])
-
-    # if not currently available, return to root
-    return redirect(url_for("root"))
+    with sqlite3.connect(DB_FILE) as connection:
+        doesntExist = True #if it's in the country database [ONLY CLAIMED COUNTRIES ARE IN THE DATABASE]
+        cur = connection.cursor()
+        bruh = cur.execute('SELECT * FROM countrydata;')
+        for i in bruh:
+            if(i[0] == countryName):
+                doesntExist = False
+        if(doesntExist):
+            cur.execute("INSERT INTO countrydata VALUES(?, ?, ?);",(resultArray[index][0], session['user'],0)) #if the claimed country isn't there, auto claim it
+    return render_template("challenge.html", selection=resultArray[index], doesntExist = doesntExist)
 
 @app.route("/leaderboards")
 def leaderboard():
-    return render_template("leaderboard.html")
+    stuff = [] #the big list of all the stuff that's going into the leaderboard
+    with sqlite3.connect(DB_FILE) as connection:
+        cur = connection.cursor()
+        cur.execute('SELECT username FROM userdata;')
+        names = cur.fetchall()
+    for i in names:#loops through all registered usernames
+        cur.execute("SELECT * FROM countrydata WHERE OWNER LIKE ? ;",(i[0],)) #cross references username with country owners
+        count = len(cur.fetchall())
+        stuff.append([i,count])
+    print(stuff)
+    return render_template("leaderboard.html", stuff = stuff)
 
 
 if __name__ == "__main__":

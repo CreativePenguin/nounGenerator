@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 
 {% block body %}
-this is country challenge
+{% if doesntExist %}
+<div style="text-align: center;">
+     This country hasn't been previously claimed, you now own it!
+</div>
+{% endif %}
 {% endblock %}
 
 {% block logout %}

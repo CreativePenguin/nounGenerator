@@ -86,7 +86,7 @@ leungD -- 2019-11-25 10:56 PM
 Created country.html
 Made it so that visit button redirects to country page
 Cleaned up button code on home.html
-Made resultArray a global variable 
+Made resultArray a global variable
 >>>>>>> restapi
 
 pengW -- 2019-11-26 07:02 AM
@@ -135,3 +135,8 @@ Fine tuned random country selection process
 
 pengW -- 2019-12-1 6:09 PM
 Add methods in order to be able to store api info
+
+leungD -- 2019-12-2 11:45 PM
+Overhauled Databases
+Added Leaderboards
+Added simple country claiming system 
