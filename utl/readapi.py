@@ -68,6 +68,13 @@ def trivia_apitoken():
         return Exception
     return data['token']
 
+# TODO: Remove this code
+def maybe_wikipedia_api():
+    # Get more details here https://www.mediawiki.org/wiki/Wikibase/API
+    # Demo code
+    data = json.loads(request.urlopen('https://www.wikidata.org/w/api.php?action=wbgetentities&sites=enwiki&titles=China&format=json').read())
+    return data
+
 # print(get_country_info('China'))
 # print(get_country_info('Germany'))
 # print(store_country_info('China'))
