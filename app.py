@@ -20,6 +20,9 @@ import utl.readapi as readapi
 app = Flask(__name__)
 app.secret_key = urandom(32)
 
+DB_FILE = "Info.db"
+db = sqlite3.connect(DB_FILE)
+c = db.cursor()
 
 # -----------------------------------------------------------------
 # DATABASE SETUP
