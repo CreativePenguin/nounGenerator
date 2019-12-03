@@ -216,6 +216,7 @@ def leaderboard():
         cur.execute("SELECT * FROM countrydata WHERE OWNER LIKE ? ;",(i[0],)) #cross references username with country owners
         count = len(cur.fetchall())
         stuff.append([i,count])
+    sorted(stuff, key =lambda x: x[1], reverse =True)
     print(stuff)
     return render_template("leaderboard.html", stuff = stuff)
 
