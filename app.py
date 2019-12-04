@@ -187,8 +187,9 @@ def country(countryName):
                 cur = connection.cursor()
                 foo = cur.execute("SELECT owner FROM countrydata WHERE countryname LIKE ? ;",(countryName,))
                 hello = foo.fetchall()
+                print(hello)
                 if(len(hello)>1):
-                    owner = hello[0]
+                    owner = hello[0][0]
             return render_template("country.html", selection=resultArray[index], owner=owner)
 
     # if not currently available, return to root
