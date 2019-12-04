@@ -68,12 +68,28 @@ def trivia_apitoken():
         return Exception
     return data['token']
 
+
 # TODO: Remove this code
-def maybe_wikipedia_api():
+def maybe_wikipedia_api(country):
     # Get more details here https://www.mediawiki.org/wiki/Wikibase/API
     # Demo code
-    data = json.loads(request.urlopen('https://www.wikidata.org/w/api.php?action=wbgetentities&sites=enwiki&titles=China&format=json').read())
+    data = json.loads(request.urlopen('https://www.wikidata.org/w/api.php?action=wbgetentities&sites=enwiki&titles={}&format=json&languages=en'.format(country)).read())
     return data
+
+CHN = maybe_wikipedia_api('China')
+# JPN = maybe_wikipedia_api('Japan')
+# PHN = maybe_wikipedia_api('Philippines')
+# AUS = maybe_wikipedia_api('Australia')
+# CHE = maybe_wikipedia_api('Chile')
+# cunts = {'China': CHN, 'Japan': JPN, 'Philippines': PHN, 'Australia': AUS, 'Chile': CHE}
+cunts = {'China': CHN}
+for i in cunts.keys():
+    print(i)
+    # print(cunts[i]['success'])
+    for j in cunts[i]['entities'].keys():
+        print(cunts[i]['entities'][j]['claims'])
+        print(cunts[i]['entities'][j].keys())
+#         print(cunts[i]['entities'][j]['descriptions']['en'].keys())
 
 # print(get_country_info('China'))
 # print(get_country_info('Germany'))
