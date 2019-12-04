@@ -7,6 +7,23 @@ import html
 COUNTRY_API_LINK = 'https://restcountries.eu/rest/v2/'
 TRIVIA_API_TOKEN_LINK = 'https://opentdb.com/api_token.php'
 TRIVIA_API_LINK = 'https://opentdb.com/api.php'
+WIKIPEDIA_API_LINK = 'https://en.wikipedia.org/w/api.php'
+
+
+def get_wikipedia_img_api(country):
+    """Returns random image gotten form the wikipedia page"""
+    country = country.replace(' ', '_')
+    print(country)
+    api = json.loads(request.urlopen('{}?action=query&format=json&prop=pageimages&titles={}'
+                                     .format(WIKIPEDIA_API_LINK, country)).read())
+    # api = json.loads(request.urlopen('{}?action=query&format=json&prop=images&titles={}'
+    #                                  .format(WIKIPEDIA_API_LINK, country)).read())
+    # Here's an explanation for the giant mess explained with an example json file
+    # https://en.wikipedia.org/w/api.php?action=query&titles=South_Africa&format=json&prop=images
+    for i in api['query']['pages'].keys():
+        # return api['query']['pages'][i]['images'][random.randint(0, 10)]['title']
+
+print(get_wikipedia_img_api('South Africa'))
 
 
 def get_country_info(country):
@@ -98,6 +115,8 @@ def trivia_apitoken():
         # TODO: Handle this exception boi!
         return Exception
     return data['token']
+
+
 
 # print(get_country_info('China'))
 # print(get_country_info('Germany'))
