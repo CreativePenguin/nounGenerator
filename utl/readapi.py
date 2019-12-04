@@ -70,8 +70,8 @@ def trivia_questions(apitoken=None):
         val.append(i + 1)
         val.append(html.unescape(data['results'][i]['question']))
         for j in data['results'][i]['incorrect_answers']:
-            answers.append(j)
-        answers.append(data['results'][i]['correct_answer'])
+            answers.append(html.unescape(j))
+        answers.append(html.unescape(data['results'][i]['correct_answer']))
         if 'True' in answers:
             answers.append('-1')
             answers.append('-1')
