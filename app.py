@@ -201,8 +201,6 @@ def profile(username):
             if (username == row[0]):
                 user = username
                 break
-            else:
-                return redirect(url_for("root"))
 
     with sqlite3.connect(DB_FILE) as connection2:
         cur = connection2.cursor()
