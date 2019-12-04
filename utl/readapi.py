@@ -1,5 +1,6 @@
 from urllib import request
 import json
+import random
 
 
 COUNTRY_API_LINK = 'https://restcountries.eu/rest/v2/'
@@ -47,14 +48,38 @@ def store_country_info(country):
     return api_info['owner']
 """
 
-def trivia_questions(apitoken):
-    data = json.loads(request.urlopen('{}?amount=10&token={}'
-                                      .format(TRIVIA_API_LINK,
-                                              apitoken)).read())
+def trivia_questions(apitoken=None):
+    """Returns all the trivia questions to be displayed"""
+    data = {}
+    if apitoken == None:
+        data = json.loads(request.urlopen('{}?amount=10'
+                                          .format(TRIVIA_API_LINK)).read())
+    else:
+        data = json.loads(request.urlopen('{}?amount=10&token={}'
+                                          .format(TRIVIA_API_LINK,
+                                                  apitoken)).read())
     if data['response_code'] == 4:
         request.urlopen('{}?command=reset&token={}'
                         .format(TRIVIA_API_TOKEN_LINK, apitoken))
-    return data
+        trivia_questions(apitoken)
+    val = []  # Collects the val of [question #, question, ans1, ans2, ans3, ans4, index of right ans]
+    answers = []  # Stores all of the potential answers in a separate array to scramble them
+    tmp = []  # Holds val in an arr of arrs
+    for i in range(10):
+        val.append(i + 1)
+        val.append(data['results'][i]['question'])
+        for j in data['results'][i]['incorrect_answers']:
+            answers.append(j)
+        answers.append(data['results'][i]['correct_answer'])
+        print(answers)
+        random.shuffle(answers)
+        for j in answers:
+            val.append(j)
+        val.append(answers.index(data['results'][i]['correct_answer']) + 2)
+        answers = []
+        tmp.append(val)
+        val = []
+    return tmp
 
 
 def trivia_apitoken():
@@ -68,6 +93,7 @@ def trivia_apitoken():
         return Exception
     return data['token']
 
+print(trivia_questions(trivia_apitoken()))
 # print(get_country_info('China'))
 # print(get_country_info('Germany'))
 # print(store_country_info('China'))

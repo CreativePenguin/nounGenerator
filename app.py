@@ -117,7 +117,7 @@ def register():
                             flash('Username already taken! Please try again.')
                             return redirect(url_for("register"))
                     cur.execute("INSERT INTO userdata VALUES (?, ?, ?, ?, ?)",
-                                (iUser, iPass, 0, "", readapi.trivia_apitoken()))
+                                (iUser, iPass, 0, ""))
                     connection.commit()
                     flash('Successfully registered! Please log in.')
                     return redirect("/login")
@@ -219,7 +219,6 @@ def profile(username):
 
     return render_template("profile.html", user=user, carray=countriesOwnedArray, lenArr=len(countriesOwnedArray))
 
-questions = [[1,"what is this","what","is","this","bruh",5]]    
 # CHALLENGE ------------------------------
 @app.route("/challenge/<countryName>")
 def challenge(countryName):
@@ -240,7 +239,8 @@ def challenge(countryName):
                 doesntExist = False
         if(doesntExist):
             cur.execute("INSERT INTO countrydata VALUES(?, ?, ?);",(resultArray[index][0], session['user'],0)) #if the claimed country isn't there, auto claim it
-    return render_template("challenge.html", selection=resultArray[index], doesntExist = doesntExist, questions = questions)
+        # cur.execute('SELECT * FROM countrydata')
+    return render_template("challenge.html", selection=resultArray[index], doesntExist = doesntExist, questions = readapi.trivia_questions())
     #TODO
     #ASSUMING THAT QUESTIONS IS A LIST OF LISTS IN THE FORMAT [[question number,question,answer1,answer2,answer3,answer4,index of right answer],[other question + answers]]
     #example: [1,"what is 9+10?",1,2,3,19,5]
