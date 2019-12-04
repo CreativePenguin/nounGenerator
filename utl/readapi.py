@@ -1,6 +1,7 @@
 from urllib import request
 import json
 import random
+import html
 
 
 COUNTRY_API_LINK = 'https://restcountries.eu/rest/v2/'
@@ -67,12 +68,15 @@ def trivia_questions(apitoken=None):
     tmp = []  # Holds val in an arr of arrs
     for i in range(10):
         val.append(i + 1)
-        val.append(data['results'][i]['question'])
+        val.append(html.unescape(data['results'][i]['question']))
         for j in data['results'][i]['incorrect_answers']:
             answers.append(j)
         answers.append(data['results'][i]['correct_answer'])
-        print(answers)
-        random.shuffle(answers)
+        if 'True' in answers:
+            answers.append('-1')
+            answers.append('-1')
+        if 'True' not in answers:
+            random.shuffle(answers)
         for j in answers:
             val.append(j)
         val.append(answers.index(data['results'][i]['correct_answer']) + 2)
@@ -93,7 +97,6 @@ def trivia_apitoken():
         return Exception
     return data['token']
 
-print(trivia_questions(trivia_apitoken()))
 # print(get_country_info('China'))
 # print(get_country_info('Germany'))
 # print(store_country_info('China'))

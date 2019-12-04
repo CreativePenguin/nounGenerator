@@ -219,13 +219,14 @@ def profile(username):
 
     return render_template("profile.html", user=user, carray=countriesOwnedArray, lenArr=len(countriesOwnedArray))
 
+questions = readapi.trivia_questions()
 # CHALLENGE ------------------------------
 @app.route("/challenge/<countryName>")
 def challenge(countryName):
     """Challenge page where you wait when someone else is trying to log in"""
     index = -1
     for i in range(len(resultArray)):
-        #print(resultArray[i][0])
+        # print(resultArray[i][0])
         if (countryName == resultArray[i][0]):
             index = i
             #print("hello")
@@ -238,9 +239,10 @@ def challenge(countryName):
             if(i[0] == countryName):
                 doesntExist = False
         if(doesntExist):
+            print(resultArray)
             cur.execute("INSERT INTO countrydata VALUES(?, ?, ?);",(resultArray[index][0], session['user'],0)) #if the claimed country isn't there, auto claim it
-        # cur.execute('SELECT * FROM countrydata')
-    return render_template("challenge.html", selection=resultArray[index], doesntExist = doesntExist, questions = readapi.trivia_questions())
+        cur.execute('SELECT * FROM countrydata')
+    return render_template("challenge.html", selection=resultArray[index], doesntExist = doesntExist, questions = questions)
     #TODO
     #ASSUMING THAT QUESTIONS IS A LIST OF LISTS IN THE FORMAT [[question number,question,answer1,answer2,answer3,answer4,index of right answer],[other question + answers]]
     #example: [1,"what is 9+10?",1,2,3,19,5]

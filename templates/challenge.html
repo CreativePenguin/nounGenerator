@@ -1,32 +1,47 @@
-{% extends "base.html" %}
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <title>WorldStar!</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
 
-{% block body %}
+    <body>
+        <!-- header -->
+        <h1 class="text-primary" style="text-align: center; font-weight: bold; padding-top: 0.25em;"> &#9876; &#x1f30e; &#x1F4A5; Worldstar! &#x1F4A5; &#x1f30e; &#9876;</h1>
+        <h6 class="text-secondary" style="text-align: center; font-style: italic;">by nounGenerator</h3>
+
 <a class="text-primary" style="text-align: left; padding-left: 5vw;" href="/country/{{ selection[0] }}">&lt; back</a>
+
 {% if doesntExist %}
 <div style="text-align: center;">
      This country hasn't been previously claimed, you now own it!
 </div>
-{% endif %}
+{% else %}
 
-<form action="/answers/{{ selection[0] }}" method="post">
+<div class="container">
+<form action="/answers/{{ selection[0] }}" class="frm-horizontal" method="post">
   {% for i in questions %}
   <h4>{{i[0]}}: {{i[1]}}</h4>
   <input type="radio" name="{{i[0]}}" id="option1" value="2"> {{i[2]}} </input><br>
   <input type="radio" name="{{i[0]}}" id="option2" value="3"> {{i[3]}} </input><br>
+  {# {% if {{{{i[4]}} is not equal to "-1"}} %} #}
   <input type="radio" name="{{i[0]}}" id="option3" value="4"> {{i[4]}} </input><br>
   <input type="radio" name="{{i[0]}}" id="option4" value="5"> {{i[5]}} </input><br>
+  {# {% endif %} #}
   {% endfor %}
   <input type="submit" value="Check Answers">
 </form>
+{% endif %}
+</div>
 
-{% endblock %}
+<div class="p-3 mb-2 bg-primary text-white" style="text-align: center; bottom: 0; margin: 0; padding: 0; position: fixed; left: 0; width: 100%;">
+    <span> nounGenerator — Derek Leung, Winston Peng, and Ahmed Sultan &copy 2019 </span>
+</div>
 
-{% block logout %}
 <br>
 <div style="text-align: center;">
      <a class="text-danger" href="/logout">[Click here to logout.]</a>
 </div>
 <br>
-{% endblock %}
-
-{% block title %}Worldstar | {{ selection[0] }}{% endblock %}
