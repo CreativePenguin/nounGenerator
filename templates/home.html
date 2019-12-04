@@ -5,13 +5,14 @@
      <a style="align-content: center; vertical-align: bottom; text-align: center;" class="btn btn-primary"
           href="/leaderboards">Leaderboards</a>
 </div>
+<br>
 <h2 class="text-dark" style="text-align: center; padding: 0; font-weight: bold;">Home</h2>
 <div style="margin: 1em;" class="d-flex bd-highlight">
     <!--Shows all of the random countries from api. Displays, flag and name in card-->
      {% for selection in array %}
           <div class="flex-fill" style="text-align: center; display: block; background-color: gainsboro; border-radius: 20px; margin: 0.5em; padding: 1em;">
                <img src="{{ selection[2] }}" style="width: 200px; height: 125px; align-content: center; margin-left: auto; margin-right: auto; display: block;">
-               <h3 class="text-dark" style="text-align: center; font-weight: bold; padding: 1em;">{{selection[0]}}</h3>
+               <h6 class="text-dark" style="text-align: center; font-weight: bold; padding: 1em;">{{selection[0]}}</h3>
                <a style="align-content: center; vertical-align: bottom;" class="btn btn-primary" href="/country/{{ selection[0] }}">Visit</a>
           </div>
      {% endfor %}
