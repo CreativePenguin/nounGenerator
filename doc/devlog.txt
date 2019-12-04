@@ -159,3 +159,6 @@ Have spent past few days making edits to HTML, will attempt to make bug fixes
 leungD -- 2019-12-4 7:03 AM
 Fixed lots of bugs
 Fixed quiz
+
+pengW -- 2019-12-4 9:31 AM
+Fixed display issues on web page
