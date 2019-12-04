@@ -79,7 +79,7 @@ def trivia_questions(apitoken=None):
             random.shuffle(answers)
         for j in answers:
             val.append(j)
-        val.append(answers.index(data['results'][i]['correct_answer']) + 2)
+        val.append(answers.index(data['results'][i]['correct_answer']))
         answers = []
         tmp.append(val)
         val = []

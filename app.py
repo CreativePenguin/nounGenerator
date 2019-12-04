@@ -272,8 +272,7 @@ def check(countryName):
     for i in questions:
         #print(request.form[str(i[0])])
         #print(i[6])
-        print(request.form)
-        if(request.form[str(i[0])] == i[6]):
+        if(int(request.form[str(i[0])]) == i[6]):
             numCorrect+=1
     with sqlite3.connect(DB_FILE) as connection:
         cur = connection.cursor()
