@@ -69,8 +69,10 @@ def login():
                             return redirect(url_for("root"))
                         else:
                             flash('Wrong password! Please try again.')
+                            break
                     else:
                         flash('Unrecognized username! Please try again.')
+                        break
         else:
             flash('Not all fields filled! Please try again.')
 
@@ -116,7 +118,7 @@ def register():
                         if (iUser == row[0]):
                             flash('Username already taken! Please try again.')
                             return redirect(url_for("register"))
-                    cur.execute("INSERT INTO userdata VALUES (?, ?, ?, ?, ?)",
+                    cur.execute("INSERT INTO userdata VALUES (?, ?, ?, ?)",
                                 (iUser, iPass, 0, ""))
                     connection.commit()
                     flash('Successfully registered! Please log in.')
