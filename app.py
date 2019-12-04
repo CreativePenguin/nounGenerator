@@ -185,22 +185,27 @@ def country(countryName):
             owner = None
             with sqlite3.connect(DB_FILE) as connection:
                 cur = connection.cursor()
-                foo = cur.execute('SELECT owner FROM countrydata WHERE EXISTS countryname = ?;',(countryName))
+                foo = cur.execute("SELECT owner FROM countrydata WHERE countryname LIKE ? ;",(countryName,))
                 hello = foo.fetchall()
-                owner = hello[0]
+                if(len(hello)>1):
+                    owner = hello[0]
             return render_template("country.html", selection=resultArray[index], owner=owner)
 
     # if not currently available, return to root
     return redirect(url_for("root"))
 
+questions = [[1,"what is this","what","is","this","bruh",5]]
 # CHALLENGE ------------------------------
 @app.route("/challenge/<countryName>")
 def challenge(countryName):
     """Challenge page where you wait when someone else is trying to log in"""
     index = -1
     for i in range(len(resultArray)):
+        #print(resultArray[i][0])
         if (countryName == resultArray[i][0]):
             index = i
+            #print("hello")
+    #print(index)
     with sqlite3.connect(DB_FILE) as connection:
         doesntExist = True  # if it's in the country database [ONLY CLAIMED COUNTRIES ARE IN THE DATABASE]
         cur = connection.cursor()
@@ -232,20 +237,23 @@ def leaderboard():
     print(stuff)
     return render_template("leaderboard.html", stuff = stuff)
 
-@app.route("/answers/<countryName>")
+@app.route("/answers/<countryName>", methods=['GET', 'POST'])
 def check(countryName):
     """Checks answers to see if they're right"""
     numCorrect = 0
     for i in questions:
-        if(request.form[i[0]] == i[6]):
+        #print(request.form[str(i[0])])
+        #print(i[6])
+        print(request.form)
+        if(request.form[str(i[0])] == i[6]):
             numCorrect+=1
     with sqlite3.connect(DB_FILE) as connection:
         cur = connection.cursor()
-        foo = cur.execute('SELECT hiScore FROM countrydata WHERE countryname = ?;',(countryName))
+        foo = cur.execute('SELECT hiScore FROM countrydata WHERE countryname = ?;',(countryName,))
         hello = foo.fetchall()
-        if(numCorrect>=hello[0]):
-            cur.execute('DELETE FROM countrydata WHERE countryname = ?;',(countryName))
-            cur.execute("INSERT INTO countrydata VALUES(?, ?, ?);",(countryName, session['user'],numCorrect))
+        if(numCorrect>=hello[0][0]):
+            cur.execute('DELETE FROM countrydata WHERE countryname = ?;',(countryName,))
+            cur.execute("INSERT INTO countrydata VALUES(?, ?, ?);",(countryName, session['user'] ,numCorrect))
             flash('You topped the existing score! You now own this country!')
         else: flash('You didn\'t top the existing score, but you can try again!')
     return redirect("/country/{}".format(countryName))

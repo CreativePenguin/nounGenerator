@@ -8,14 +8,14 @@
 </div>
 {% endif %}
 
-<form action="/answers/{{ selection[0] }}">
-  {{for i in questions}}
+<form action="/answers/{{ selection[0] }}" method="post">
+  {% for i in questions %}
   <h4>{{i[0]}}: {{i[1]}}</h4>
   <input type="radio" name="{{i[0]}}" id="option1" value="2"> {{i[2]}} </input><br>
   <input type="radio" name="{{i[0]}}" id="option2" value="3"> {{i[3]}} </input><br>
   <input type="radio" name="{{i[0]}}" id="option3" value="4"> {{i[4]}} </input><br>
   <input type="radio" name="{{i[0]}}" id="option4" value="5"> {{i[5]}} </input><br>
-  {{endfor}}
+  {% endfor %}
   <input type="submit" value="Check Answers">
 </form>
 
