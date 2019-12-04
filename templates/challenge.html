@@ -26,10 +26,10 @@
   <h4>{{i[0]}}: {{i[1]}}</h4>
   <input type="radio" name="{{i[0]}}" id="option1" value="2"> {{i[2]}} </input><br>
   <input type="radio" name="{{i[0]}}" id="option2" value="3"> {{i[3]}} </input><br>
-  {# {% if {{{{i[4]}} is not equal to "-1"}} %} #}
+  {% if "False" not in i %}
   <input type="radio" name="{{i[0]}}" id="option3" value="4"> {{i[4]}} </input><br>
   <input type="radio" name="{{i[0]}}" id="option4" value="5"> {{i[5]}} </input><br>
-  {# {% endif %} #}
+  {% endif %}
   {% endfor %}
   <input type="submit" value="Check Answers">
 </form>

@@ -131,7 +131,6 @@ def register():
 
 
 # HOME ------------------------------
-# TODO: Add comment about what resultArray does
 resultArray = []
 
 @app.route("/home")
