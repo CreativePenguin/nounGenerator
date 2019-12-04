@@ -101,16 +101,16 @@ Streamline process of getting info from apis
 Fix README so that it specifies the user must use python3
 
 HOME STRETCH PLAN
-[ ] Make questions web page, and general template structure -- Derek
-[ ] Grab proper info from countries api and wikipedia -- Winston
+[-] Make questions web page, and general template structure -- Derek
+[-] Grab proper info from countries api and wikipedia -- Winston
 [ ] Figure out how to proper keep track of battles, and conquered countries -- Ahmed
     Will need to store use in data base for certain amount of time
     May be cut in place of high score system
-[ ] Refresh countries every so often -- Not Assigned Yet
+[ ] Refresh countries every so often -- Not Assigned yet
     May need to be cut, and just have a set couple of countries
     [ ] How to store conquered country -- Ahmed
-    [ ] Quiz API Data -- Winston
-[ ] Adding more info to country pages -- Not Assigned Yet
+    [-] Quiz API Data -- Winston
+[ ] Adding more info to country pages -- Ahmed
 
 EXTRA POINTS
 - Timer for amount of time allowed for each question
@@ -135,3 +135,6 @@ Fine tuned random country selection process
 
 pengW -- 2019-12-1 6:09 PM
 Add methods in order to be able to store api info
+
+pengW -- 2019-12-3 7:14 PM
+Can now store countries in database
