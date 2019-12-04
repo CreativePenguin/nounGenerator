@@ -33,6 +33,7 @@ def get_country_params():
     """Stores the api parameters used to make trivia questions"""
     return ['countryname', 'population', 'capital', 'subregion', 'population']
 
+
 """
 def store_country_info(country):
     api_info = get_country_info(country)
@@ -49,10 +50,11 @@ def store_country_info(country):
     return api_info['owner']
 """
 
+
 def trivia_questions(apitoken=None):
     """Returns all the trivia questions to be displayed"""
     data = {}
-    if apitoken == None:
+    if apitoken is None:
         data = json.loads(request.urlopen('{}?amount=10'
                                           .format(TRIVIA_API_LINK)).read())
     else:
