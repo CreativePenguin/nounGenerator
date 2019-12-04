@@ -22,6 +22,12 @@
 <div style="text-align: center;">
     <a style="align-content: center; vertical-align: bottom; text-align: center;" class="btn btn-primary" href="/challenge/{{ selection [0] }}">Challenge</a>
 </div>
+
+{% for message in get_flashed_messages() %}
+<br><br>
+<center><b>{{ message }}</b></center>
+{% endfor %}
+
 {% endblock %}
 
 {% block logout %}

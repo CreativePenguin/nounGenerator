@@ -146,3 +146,8 @@ Add docstrings for python.
 
 pengW -- 2019-12-3 3:14 PM
 Can now retrieve data from trivia api. Will need to organize later
+
+leungD -- 2019-12-3 10:10 PM
+Did the HTML side of the quiz thing
+Made owner section of country page work properly
+Implemented answer checking and replacing others in database 

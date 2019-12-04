@@ -1,11 +1,24 @@
 {% extends "base.html" %}
 
 {% block body %}
+<a class="text-primary" style="text-align: left; padding-left: 5vw;" href="/country/{{ selection[0] }}">&lt; back</a>
 {% if doesntExist %}
 <div style="text-align: center;">
      This country hasn't been previously claimed, you now own it!
 </div>
 {% endif %}
+
+<form action="/answers/{{ selection[0] }}">
+  {{for i in questions}}
+  <h4>{{i[0]}}: {{i[1]}}</h4>
+  <input type="radio" name="{{i[0]}}" id="option1" value="2"> {{i[2]}} </input><br>
+  <input type="radio" name="{{i[0]}}" id="option2" value="3"> {{i[3]}} </input><br>
+  <input type="radio" name="{{i[0]}}" id="option3" value="4"> {{i[4]}} </input><br>
+  <input type="radio" name="{{i[0]}}" id="option4" value="5"> {{i[5]}} </input><br>
+  {{endfor}}
+  <input type="submit" value="Check Answers">
+</form>
+
 {% endblock %}
 
 {% block logout %}
