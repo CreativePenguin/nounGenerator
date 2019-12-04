@@ -15,7 +15,7 @@
   <tbody>
     {% for i in stuff %}
     <tr>
-      <td>{{i[0][0]}}</td>
+      <td><a class="text-primary" style="text-align: left; padding-left: 5vw;" href="/profile/{{i[0][0]}}"> {{i[0][0]}}</a></td>
       <td>{{i[1]}}</td>
     </tr>
     {% endfor %}
