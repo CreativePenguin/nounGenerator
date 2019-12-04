@@ -134,7 +134,6 @@ def register():
 # TODO: Add comment about what resultArray does
 resultArray = []
 
-
 @app.route("/home")
 def home():
     """Home Page -- Shows 5 random countries"""
@@ -194,7 +193,33 @@ def country(countryName):
     # if not currently available, return to root
     return redirect(url_for("root"))
 
-questions = [[1,"what is this","what","is","this","bruh",5]]
+@app.route("/profile/<username>")
+def profile(username):
+    user = ""
+    with sqlite3.connect(DB_FILE) as connection:
+        cur = connection.cursor()
+        qry = 'SELECT username, password FROM userdata;'
+        foo = cur.execute(qry)
+        userList = foo.fetchall()
+        for row in userList:
+            if (username == row[0]):
+                user = username
+                break
+            else:
+                return redirect(url_for("root"))
+
+    with sqlite3.connect(DB_FILE) as connection2:
+        cur = connection2.cursor()
+        qry = 'SELECT * FROM countrydata WHERE owner="{}";'.format(username)
+        foo = cur.execute(qry)
+        countryList = foo.fetchall()
+        countriesOwnedArray = []
+        for row in countryList:
+            countriesOwnedArray.append(row)
+
+    return render_template("profile.html", user=user, carray=countriesOwnedArray, lenArr=len(countriesOwnedArray))
+
+questions = [[1,"what is this","what","is","this","bruh",5]]    
 # CHALLENGE ------------------------------
 @app.route("/challenge/<countryName>")
 def challenge(countryName):
