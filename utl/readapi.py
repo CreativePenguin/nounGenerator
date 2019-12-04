@@ -30,7 +30,7 @@ def get_country_info(country):
 def get_country_params():
     """Stores the api parameters used to make trivia questions"""
     return ['countryname', 'population', 'capital', 'subregion', 'population']
-    
+
 """
 def store_country_info(country):
     api_info = get_country_info(country)
@@ -53,7 +53,7 @@ def trivia_questions(apitoken):
                                               apitoken)).read())
     if data['response_code'] == 4:
         request.urlopen('{}?command=reset&token={}'
-                        .format(TRIVIA_API_TOKEN_LINK, apitoken)
+                        .format(TRIVIA_API_TOKEN_LINK, apitoken))
     return data
 
 
