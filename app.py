@@ -218,7 +218,7 @@ def profile(username):
 
     return render_template("profile.html", user=user, carray=countriesOwnedArray, lenArr=len(countriesOwnedArray))
 
-questions = readapi.trivia_questions()
+questions = []
 # CHALLENGE ------------------------------
 @app.route("/challenge/<countryName>")
 def challenge(countryName):
@@ -241,6 +241,8 @@ def challenge(countryName):
             print(resultArray)
             cur.execute("INSERT INTO countrydata VALUES(?, ?, ?);",(resultArray[index][0], session['user'],0)) #if the claimed country isn't there, auto claim it
         cur.execute('SELECT * FROM countrydata')
+    global questions
+    questions = readapi.trivia_questions()
     return render_template("challenge.html", selection=resultArray[index], doesntExist = doesntExist, questions = questions)
     #TODO
     #ASSUMING THAT QUESTIONS IS A LIST OF LISTS IN THE FORMAT [[question number,question,answer1,answer2,answer3,answer4,index of right answer],[other question + answers]]
