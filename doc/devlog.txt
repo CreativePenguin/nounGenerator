@@ -151,3 +151,7 @@ leungD -- 2019-12-3 10:10 PM
 Did the HTML side of the quiz thing
 Made owner section of country page work properly
 Implemented answer checking and replacing others in database 
+
+sultanA -- 2019-12-03 5:58 AM
+Retroactively editing design doc
+Have spent past few days making edits to HTML, will attempt to make bug fixes
