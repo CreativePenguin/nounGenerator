@@ -162,3 +162,8 @@ Fixed quiz
 
 pengW -- 2019-12-4 9:31 AM
 Fixed display issues on web page
+
+leungD -- 2019-12-4 4:42 PM
+Fixed more bugs
+Added exception handling for empty questions
+Fixed account creation handling 
