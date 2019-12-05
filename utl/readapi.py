@@ -11,20 +11,30 @@ WIKIPEDIA_API_LINK = 'https://en.wikipedia.org/w/api.php'
 
 
 def get_wikipedia_img_api(country):
-    """Returns random image gotten form the wikipedia page"""
+    """Returns random image gotten form the wikipedia page & img name"""
+    global WIKIPEDIA_API_LINK
+    WIKIPEDIA_API_LINK += '?action=query&format=json'
     country = country.replace(' ', '_')
-    print(country)
-    api = json.loads(request.urlopen('{}?action=query&format=json&prop=pageimages&titles={}'
-                                     .format(WIKIPEDIA_API_LINK, country)).read())
-    # api = json.loads(request.urlopen('{}?action=query&format=json&prop=images&titles={}'
+    # api = json.loads(request.urlopen('{}&prop=pageimages&titles={}'
     #                                  .format(WIKIPEDIA_API_LINK, country)).read())
-    # Here's an explanation for the giant mess explained with an example json file
+    api = json.loads(request.urlopen('{}&prop=images&titles={}'
+                                     .format(WIKIPEDIA_API_LINK, country)).read())
+    # Here's an explanation for the giant mess below explained with an example json file
     # https://en.wikipedia.org/w/api.php?action=query&titles=South_Africa&format=json&prop=images
-    for i in api['query']['pages'].keys():
-        # return api['query']['pages'][i]['images'][random.randint(0, 10)]['title']
-
-print(get_wikipedia_img_api('South Africa'))
-
+    print(api['query']['pages'])
+    for i in api['query']['pages']:
+        img_list = api['query']['pages'][i]['images']
+        filename = img_list[random.randint(0, len(img_list) - 1)]['title']
+        filename = filename.replace(' ', '_')
+        break
+    # filename = api['query']['pages'][0]['images'][random.randint(0, 10)]['title']
+    # Previous api just returns filename, will need to go into another api for link
+    # https://en.wikipedia.org/w/api.php?action=query&format=json&prop=imageinfo&iiprop=url&titles=File:African%20buffalo%20(Syncerus%20caffer)%20male%20with%20Oxpecker.jpg
+    api = json.loads(request.urlopen('{}&prop=imageinfo&iiprop=url&titles={}'
+                                     .format(WIKIPEDIA_API_LINK, filename)).read())
+    img_src = next(iter(api['query']['pages'].values()))['imageinfo'][0]['url']
+    img_info = {'name': filename, 'src': img_src}
+    return img_info
 
 def get_country_info(country):
     """Returns matrix storing name, population and so on"""
