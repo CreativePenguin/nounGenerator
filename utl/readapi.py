@@ -14,18 +14,24 @@ def get_wikipedia_img_api(country):
     global WIKIPEDIA_API_LINK
     WIKIPEDIA_API_LINK += '?action=query&format=json'
     country = country.replace(' ', '_')
+    if '(' in country:
+        country = country[:country.index('(')]
+    if ',' in country:
+        country = country[:country.index(',')]
     # api = json.loads(request.urlopen('{}&prop=pageimages&titles={}'
     #                                  .format(WIKIPEDIA_API_LINK, country)).read())
     api = json.loads(request.urlopen('{}&prop=images&titles={}'
                                      .format(WIKIPEDIA_API_LINK, country)).read())
     # Here's an explanation for the giant mess below explained with an example json file
     # https://en.wikipedia.org/w/api.php?action=query&titles=South_Africa&format=json&prop=images
-    print(api['query']['pages'])
-    for i in api['query']['pages']:
-        img_list = api['query']['pages'][i]['images']
-        filename = img_list[random.randint(0, len(img_list) - 1)]['title']
-        filename = filename.replace(' ', '_')
-        break
+    is_not_svg = True
+    while is_not_svg:
+        for i in api['query']['pages']:
+            img_list = api['query']['pages'][i]['images']
+            filename = img_list[random.randint(0, len(img_list) - 1)]['title']
+            is_not_svg = filename[-3:] == 'svg'
+            filename = filename.replace(' ', '_')
+            break
     # filename = api['query']['pages'][0]['images'][random.randint(0, 10)]['title']
     # Previous api just returns filename, will need to go into another api for link
     # https://en.wikipedia.org/w/api.php?action=query&format=json&prop=imageinfo&iiprop=url&titles=File:African%20buffalo%20(Syncerus%20caffer)%20male%20with%20Oxpecker.jpg
@@ -106,6 +112,7 @@ def trivia_questions(apitoken=None):
             random.shuffle(answers)
         for j in answers:
             val.append(j)
+        print("{}\t{}".format(data['results'][i]['correct_answer'], answers.index(html.unescape(data['results'][i]['correct_answer']))))
         val.append(answers.index(html.unescape(data['results'][i]['correct_answer'])))
         answers = []
         tmp.append(val)

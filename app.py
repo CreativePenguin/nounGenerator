@@ -265,10 +265,8 @@ def check(countryName):
     """Checks answers to see if they're right"""
     numCorrect = 0
     for i in questions:
-        #print(request.form[str(i[0])])
-        #print(i[6])
         try:
-            if(int(request.form[str(i[0])]) == i[6]):
+            if(int(request.form[str(i[0])]) - 2 == i[6]):
                 numCorrect+=1
         except KeyError as e:
             numCorrect+=0
@@ -276,8 +274,6 @@ def check(countryName):
         cur = connection.cursor()
         foo = cur.execute('SELECT hiScore FROM countrydata WHERE countryname = ?;',(countryName,))
         hello = foo.fetchall()
-        print(hello)
-        print(numCorrect)
         if(numCorrect>=hello[0][0]):
             cur.execute('DELETE FROM countrydata WHERE countryname = ?;',(countryName,))
             cur.execute("INSERT INTO countrydata VALUES(?, ?, ?);",(countryName, session['user'] ,numCorrect))
