@@ -44,7 +44,7 @@ def root():
     return redirect("/login")
 
 # LOGIN ------------------------------
-@app.route("/login")
+@app.route("/login", methods=['GET', 'POST'])
 def login():
     """Login page -- Redirects if user is logged in. Leads to home page & account creation"""
     # if user is already logged in, redirect back to discover to be handled
@@ -67,14 +67,8 @@ def login():
                         if iPass == row[1]:
                             session['user'] = iUser
                             return redirect(url_for("root"))
-                        else:
-                            flash('Wrong password! Please try again.')
-                            break
-                    else:
-                        flash('Unrecognized username! Please try again.')
-                        break
         else:
-            flash('Not all fields filled! Please try again.')
+            flash('Please make sure you filled out all the fields with the correct information')
 
     # rendering template
     return render_template("login.html")
@@ -188,7 +182,7 @@ def country(countryName):
                 foo = cur.execute("SELECT owner FROM countrydata WHERE countryname LIKE ? ;",(countryName,))
                 hello = foo.fetchall()
                 print(hello)
-                if(len(hello)>1):
+                if(len(hello)>=1):
                     owner = hello[0][0]
             return render_template("country.html", selection=resultArray[index], owner=owner)
 
@@ -207,8 +201,6 @@ def profile(username):
             if (username == row[0]):
                 user = username
                 break
-            else:
-                return redirect(url_for("root"))
 
     with sqlite3.connect(DB_FILE) as connection2:
         cur = connection2.cursor()
@@ -275,16 +267,21 @@ def check(countryName):
     for i in questions:
         #print(request.form[str(i[0])])
         #print(i[6])
-        if(int(request.form[str(i[0])]) == i[6]):
-            numCorrect+=1
+        try:
+            if(int(request.form[str(i[0])]) == i[6]):
+                numCorrect+=1
+        except KeyError as e:
+            numCorrect+=0
     with sqlite3.connect(DB_FILE) as connection:
         cur = connection.cursor()
         foo = cur.execute('SELECT hiScore FROM countrydata WHERE countryname = ?;',(countryName,))
         hello = foo.fetchall()
+        print(hello)
+        print(numCorrect)
         if(numCorrect>=hello[0][0]):
             cur.execute('DELETE FROM countrydata WHERE countryname = ?;',(countryName,))
             cur.execute("INSERT INTO countrydata VALUES(?, ?, ?);",(countryName, session['user'] ,numCorrect))
-            flash('You topped the existing score! You now own this country!')
+            flash('You got {} question(s) right! That\'s the high score! You now own this country!'.format(numCorrect))
         else: flash('You didn\'t top the existing score, but you can try again!')
     return redirect("/country/{}".format(countryName))
 
