@@ -258,7 +258,7 @@ def leaderboard():
         stuff.append([i,count])
     stuff = sorted(stuff, key =lambda x: x[1], reverse =True)
     print(stuff)
-    return render_template("leaderboard.html", stuff = stuff)
+    return render_template("leaderboard.html", stuff = stuff, username = session['user'])
 
 @app.route("/answers/<countryName>", methods=['GET', 'POST'])
 def check(countryName):
