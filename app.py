@@ -184,7 +184,7 @@ def country(countryName):
                 hello = foo.fetchall()
                 if(len(hello)>=1):
                     owner = hello[0][0]
-            return render_template("country.html", selection=resultArray[index], owner=owner)
+            return render_template("country.html", selection=resultArray[index], owner=owner, username=session['user'])
 
     # if not currently available, return to root
     return redirect(url_for("root"))
