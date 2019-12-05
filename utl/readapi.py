@@ -9,7 +9,6 @@ TRIVIA_API_TOKEN_LINK = 'https://opentdb.com/api_token.php'
 TRIVIA_API_LINK = 'https://opentdb.com/api.php'
 WIKIPEDIA_API_LINK = 'https://en.wikipedia.org/w/api.php'
 
-
 def get_wikipedia_img_api(country):
     """Returns random image gotten form the wikipedia page & img name"""
     global WIKIPEDIA_API_LINK
@@ -59,7 +58,6 @@ def get_country_info(country):
 def get_country_params():
     """Stores the api parameters used to make trivia questions"""
     return ['countryname', 'population', 'capital', 'subregion', 'population']
-
 
 """
 def store_country_info(country):
@@ -114,7 +112,6 @@ def trivia_questions(apitoken=None):
         val = []
     return tmp
 
-
 def trivia_apitoken():
     """Returns a new api token for trivia to keep the trivia questions fresh
     Each token will always get new questions, each user should have a token
@@ -126,8 +123,9 @@ def trivia_apitoken():
         return Exception
     return data['token']
 
-
-
 # print(get_country_info('China'))
 # print(get_country_info('Germany'))
 # print(store_country_info('China'))
+
+
+

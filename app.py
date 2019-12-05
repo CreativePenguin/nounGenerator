@@ -138,13 +138,13 @@ def home():
     if 'user' not in session:
         return redirect(url_for("root"))
 
+    u = urllib.request.urlopen("https://restcountries.eu/rest/v2")
+    response = u.read()
+    data = json.loads(response)
+
     # Chooses and displays 5 random countries
     count = 0
     while count < 5:
-        u = urllib.request.urlopen("https://restcountries.eu/rest/v2")
-        response = u.read()
-        data = json.loads(response)
-
         # picking random country from API response
         rand_num = random.randint(0, 249)
 
@@ -152,12 +152,13 @@ def home():
         ctry_capital = data[rand_num]['capital']
         ctry_flag = data[rand_num]['flag']
         ctry_currency = data[rand_num]['currencies'][0]['name']
+        ctry_currency_code = data[rand_num]['currencies'][0]['code']
         ctry_population = data[rand_num]['population']
         ctry_languages = []
         for i in data[rand_num]['languages']:
             ctry_languages.append(i['name'])
 
-        countryArray = [ctry_name, ctry_capital, ctry_flag, ctry_currency, ctry_population, ctry_languages]
+        countryArray = [ctry_name, ctry_capital, ctry_flag, ctry_currency, ctry_population, ctry_languages, ctry_currency_code]
         if countryArray not in resultArray and ctry_population > 50000000:
             count = count + 1
             resultArray.append(countryArray)
@@ -181,7 +182,6 @@ def country(countryName):
                 cur = connection.cursor()
                 foo = cur.execute("SELECT owner FROM countrydata WHERE countryname LIKE ? ;",(countryName,))
                 hello = foo.fetchall()
-                print(hello)
                 if(len(hello)>=1):
                     owner = hello[0][0]
             return render_template("country.html", selection=resultArray[index], owner=owner)

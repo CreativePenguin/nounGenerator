@@ -23,3 +23,16 @@
 </table>
 </div>
 {% endblock %}
+
+{% block logout %}
+<div style="text-align: center;">
+  <br>
+  <a>Logged in as: {{ username }}</a>
+</div>
+<div style="text-align: center;">
+  <a class="text-danger" href="/logout">[Click here to logout.]</a>
+</div>
+<br>
+{% endblock %}
+
+{% block title %}Worldstar | Leaderboard{% endblock %}
