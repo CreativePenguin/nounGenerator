@@ -167,3 +167,6 @@ leungD -- 2019-12-4 4:42 PM
 Fixed more bugs
 Added exception handling for empty questions
 Fixed account creation handling 
+
+sultanA -- 2019-12-05 7:59 AM
+Made a few small HTML/JINJA fixes and bug fixes
