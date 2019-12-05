@@ -112,7 +112,8 @@ def trivia_questions(apitoken=None):
             random.shuffle(answers)
         for j in answers:
             val.append(j)
-        print("{}\t{}".format(data['results'][i]['correct_answer'], answers.index(html.unescape(data['results'][i]['correct_answer']))))
+        # Uncomment the next line if you want answers to print out
+        # print("{}\t{}".format(data['results'][i]['correct_answer'], answers.index(html.unescape(data['results'][i]['correct_answer']))))
         val.append(answers.index(html.unescape(data['results'][i]['correct_answer'])))
         answers = []
         tmp.append(val)
