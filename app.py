@@ -282,10 +282,9 @@ def check(countryName):
             cur.execute('DELETE FROM countrydata WHERE countryname = ?;',(countryName,))
             cur.execute("INSERT INTO countrydata VALUES(?, ?, ?);",(countryName, session['user'] ,numCorrect))
             flash('You got {} question(s) right! That\'s the high score! You now own this country!'.format(numCorrect))
+            flash(readapi.get_wikipedia_img_api(countryName))
         else: flash('You didn\'t top the existing score, but you can try again!')
     return redirect("/country/{}".format(countryName))
-
-
 
 
 if __name__ == "__main__":
